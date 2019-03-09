@@ -12,6 +12,9 @@ typedef long long ll;
 ll A, B = 0;
 
 //4の倍数周期で出てくる値が決まってるポイので0~nが簡単に求まる
+//0~n と 0~mのそれぞれのXORを求めて，その値同士のXORを取ると差分が出てくる
+//n xor n = 0なので(つまり共通部分)
+
 int main(){
     clock_t start = clock();
     cin >> A >> B;
