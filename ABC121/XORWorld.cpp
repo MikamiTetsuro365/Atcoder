@@ -16,7 +16,7 @@ ll A, B = 0;
 //n xor n = 0なので(つまり共通部分)
 
 int main(){
-    clock_t start = clock();
+
     cin >> A >> B;
 
     ll total = 0;
