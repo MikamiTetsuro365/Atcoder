@@ -11,6 +11,7 @@ typedef long long ll;
 
 ll A, B = 0;
 
+//4の倍数周期で出てくる値が決まってるポイので0~nが簡単に求まる
 int main(){
     clock_t start = clock();
     cin >> A >> B;
