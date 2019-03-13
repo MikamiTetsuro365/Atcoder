@@ -21,12 +21,15 @@ struct UnionFind{
     vector<ll > tree;
     //高さ
     vector<ll > rank;
-
+    //グループごとのサイズ
+    vector<ll > size;
+ 
     //定義
-    UnionFind(ll N) : tree(N), rank(N){
+    UnionFind(ll N) : tree(N), rank(N), size(N){
         for(int i = 0; i < N; i++){
             tree[i] = i;
             rank[i] = 0;
+            size[i] = 1;
         }
     }
 
@@ -47,6 +50,11 @@ struct UnionFind{
         if(tx == ty){
             return;
         }
+
+        ll s = size[tx] + size[ty];
+        size[tx] = s;
+        size[ty] = s;
+
         //tree[tx] = ty;
         //高くない方にくっつけたい：効果がいまいちわからん
         //下：ランク付けのつもり 
@@ -61,6 +69,9 @@ struct UnionFind{
                 rank[tx]++;
             }
         }
+
+        //return s1;
+
     }
 
     //同じ木に属しているか？根っこをさかのぼって調べてみる
@@ -72,6 +83,10 @@ struct UnionFind{
         }else{
             return false;
         }
+    }
+    //グループのサイズを返す
+    int FindSize(int x){
+        return size[root(x)];
     }
 
 };
