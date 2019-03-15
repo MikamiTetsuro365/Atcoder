@@ -40,21 +40,22 @@ int main(){
     }
 
     //グラフ確認
+    /*
     for(ll i = 0; i < N; i++){
         cout << G[i].size() << " " << endl;;
     }
+    */
     //流入数確認
     for(ll i = 0; i < N; i++){
-        cout << in_G[i] << " " << endl;
         if(in_G[i] == 0){
             in.push(i);
         }
-    }   
+    }  
+
 
     ll n = 0;
     while(in.empty() == 0){
         n = in.front();
-        cout << "あああ" << endl;
         result.push_back(n);
         in.pop();
         for(ll i = 0; i < G[n].size(); i++){
@@ -65,6 +66,13 @@ int main(){
         }
     }
 
+    for(int i = 0; i < N; i++){
+        if(in_G[i] > 0){
+            cout << "No DAG" << endl;
+            return 0;
+        }
+    }
+    cout << "Yes DAG" << endl;
     for(int i = 0; i < result.size(); i++){
         cout << result[i] + 1 << " ";
     }
