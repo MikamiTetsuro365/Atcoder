@@ -23,8 +23,6 @@ int main(){
         A.push_back(t);
         t = t - (i + 1);
         t_A.push_back(t);
-        
-
     }
 
     sort(t_A.begin(), t_A.end());
@@ -45,7 +43,6 @@ int main(){
         //cout << A[i - 1] << endl;
         ans += abs(A[i - 1] - (center + i));
     }    
-
     cout << ans << endl;
 
 }
