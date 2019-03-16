@@ -43,7 +43,6 @@ int main(){
     for(ll i = 1; i <= mx; i++){
         for(ll j = 0; j < A.size(); j++){
             if((dp[N - num[A[j]-1]]) == (mx - i) && N >= num[A[j]-1]){
-                //cout << j << ":" << mx - i << ":" << dp[N - num[A[j]-1]] << ":" << A[j] << endl;
                 ans += to_string(A[j]);
                 N = N - num[A[j]-1];
                 break;
@@ -51,19 +50,7 @@ int main(){
         }
     }
 
-    /*
-    for(ll i = 0; i < dp.size(); i++){
-        cout << dp[i] << " ";
-    }
-    cout << endl;
-    */
-    
-    
-
-    //cout << dp[dp.size() - 1] << endl;
     cout << ans << endl;
     
-
-
     return 0;
 }
