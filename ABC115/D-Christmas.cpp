@@ -17,7 +17,6 @@ ll total = 1;
 vector<ll > length;
 vector<ll > P_length;
 
-//ぜんぜんわからん
 ll sum(ll N, ll X){
     if(N == 0){
         if(X <= 0){
