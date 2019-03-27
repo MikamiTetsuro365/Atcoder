@@ -63,8 +63,6 @@ void dijkstra(ll start){
 int main() {
     //頂点数
     cin >> N;
-
-
     //出次数
     ll u = 0;
     ll k = 0;
