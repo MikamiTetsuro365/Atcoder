@@ -22,13 +22,15 @@ ll INF = 1<<28;
 
 int main() {
     //頂点数
-    cin >> N >> M >> r;
-    vector<vector<pair<ll, ll> > > G(N);
+    int A;
+    int B;
+    int C;
+    cin >> A >> B >> C;
 
-    ll a, b, t;
-    for(ll i = 0; i < M; i++){   
-        cin >> a >> b >> t;
-
+    if(A == B && B == C && C == A){
+        cout << "Yes"<< endl;
+    }else{
+        cout << "No" << endl;
     }
 
 
