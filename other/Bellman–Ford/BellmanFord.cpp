@@ -18,7 +18,7 @@ ll N;
 ll M;
 ll r;
 ll INF = 1<<28;
-
+//ベルマンフォード
 bool bellman(vector<vector<pair<ll, ll> > > G, ll start){
     //準備
     vector<ll > dist(N, 1<<28);
