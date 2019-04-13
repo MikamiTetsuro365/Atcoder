@@ -79,12 +79,12 @@ int main(){
         int Nextleft = i;
         //右端を貫通しないように制限を加える
         int Nextright = min(i + range, (int)vec.size());
-        //前の左端から今回の左端まで（差分）
+        //前の左端から今回の左端まで（差分）引く
         while(Nextleft > left){
             temp -= vec[left];
             left++;
         }
-        //前の右端から今回の右端まで（差分）
+        //前の右端から今回の右端まで（差分）足す
         while(Nextright > right){
             temp += vec[right];
             right++;
