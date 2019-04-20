@@ -34,6 +34,7 @@ int main(){
     //０または１が連続するところをまとめる処理
     ll f = 0;
     ll cont = 1;
+    ll white = 0;
     for(ll i = 0; i < s.length()-1; i++){
         if(swi == 0){
             if(s.substr(i, 1) == "#" && s.substr(i+1, 1) == "."){
@@ -46,6 +47,7 @@ int main(){
         }else{
             if(s.substr(i, 1) == "." && s.substr(i+1, 1) == "#"){
                 vec.push_back(cont);
+                white += cont;
                 swi = 0;
                 cont = 1;
             }else{
@@ -55,7 +57,10 @@ int main(){
 
     }
     vec.push_back(cont);
-    
+    if(s.substr(s.length()-1,1) == "."){
+        white += cont;
+    } 
+    //cout << white << endl;
     //０になるとき
     if(cont == s.length()){
         cout << "0" << endl;
@@ -66,18 +71,20 @@ int main(){
         }
         return 0;
     }
-
-    ll ans = 0;
-
-    for(ll i = 1; i < vec.size(); i = i + 2){
-        if(vec[i] < vec[i + 1]){
-            ans += vec[i];
-        }else{
-            ans += vec[i + 1];
-        }
-       
-    }
-
-    cout << ans << endl;
     
+    ll black = 0;
+    ll ans = 1145141919;
+    for(int i = 0; i < vec.size(); i++){
+        //黒の個数確認
+        if(i % 2 == 0){
+            white -= vec[i];
+        }else{
+            black += vec[i];
+        }
+        //cout << black << " " << white << endl;
+        ans = min(ans, black + white);
+
+    }
+    
+    cout << ans << endl;  
 }
