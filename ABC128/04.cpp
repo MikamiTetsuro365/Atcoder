@@ -54,10 +54,13 @@ int main(){
             for(ll i = N - 1; i > N - r - 1; i--){
                 que.push(V[i]);
                 r_sum += V[i];
+                //cout << V[i];
 
             }
             //cout << endl;
+            //cout << endl;
             total = l_sum + r_sum;
+            //cout << total << endl;
             //残りの手数で符の価値を持つ宝石だけ捨てる．価値を更新
             for(ll i = 0; i < que.size(); i++){
                 if(re_K <= i) break;
@@ -74,17 +77,9 @@ int main(){
             } 
             //cout << total << endl;
             mx = max(total, mx);
-            //value.push_back(total);
+            value.push_back(total);
         }
         
     }
     cout << mx << endl;
-    /*
-    for(int i = 0; i < value.size(); i++){
-        cout << value[i] << endl;
-    }
-    */
-    
-
-
 } 
