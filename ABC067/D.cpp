@@ -30,14 +30,14 @@ ll ans = 0;
 
 ll dfs(ll idx, ll end , ll from = -1){
     
-    //計算終了
-    /*
+    //どこからどこへ行く？
+    if(idx != 1) where[idx] = make_pair(from, battleZone[from]);  
+
     if(idx == end){
         //伝搬させておくと楽
         battleZone[idx] = battleZone[from];
         return 0;
     }
-    */
 
     if(from != -1){
         //はじめ以外伝搬
@@ -53,23 +53,15 @@ ll dfs(ll idx, ll end , ll from = -1){
     for(ll i = 0; i < G[idx].size(); i++){
         //次の行き先は？
         ll to = G[idx][i];
-        //どこからどこへ行く？
-        where[to] = make_pair(idx, battleZone[idx]);
+
         //同じだったらもう処理しない
         if(to == from){
             continue;
         }
-        //ここで終わり
-        if(to == end){
-            //伝搬させておくと楽
-            battleZone[to] = battleZone[from];
-            return 0;
-        } 
         dfs(to, end, idx);
-        
- 
+        ans++;
     }
-    ans++;
+    
     return 0;
 }
  
@@ -86,41 +78,38 @@ int main(){
         G[v[i]].push_back(u[i]);
     }
  
-    ll ans = 0;
     battleZone[0] = 0;
     battleZone[1] = 0;
     //Fennecが塗りつぶせる数 スタート：ノード１
     dfs(1, N);
-    //dfs(N, 1);
-    /*
-    cout << battleZone[4] << endl;
-    cout << battleZone[5] << endl;
-    cout << battleZone[6] << endl;
-    cout << battleZone[8] << endl;
-    cout << battleZone[12] << endl;
-    cout << battleZone[11] << endl;
-    */
     
-    ll j = N+1;
+    ll j = N;
+    ll battaleZoneDistance = 0;
     vector<ll > battleZoneNode;
-    while(j != 0){
-        battleZoneNode.push_back(where[j].second);
-        j = where[j].second;
-        cout << where[j].second << endl;
+
+    while(j != 1){
+        if(where[j].first != 0){
+            //cout << where[j].first << endl;
+            battleZoneNode.insert(battleZoneNode.begin(), where[j].first);
+            j = where[j].first;
+            battaleZoneDistance++;
+        }
+        if(where[j].first == 1){
+            break;
+        }
     }
-    
-    
-    for(ll i = 0; i <= N + 1; i++){
-        cout << i << ":" << where[i].first << "," << where[i].second << endl;
+
+    ll trueGoal = battleZoneNode[where[N].second / 2 + where[N].second % 2 ];
+    //フラグ初期化
+    for(ll i = 0; i < 1145141; i++){
+        f_flg[i] = 0;
     }
-    cout << ans << endl;
-    
-    //cout << battleZone[N] << "," << Fennec << "," << Snuke << endl;
-    //勝者は？？
-    //最終的に取れるノード
-    //Fennec = Fennec - battleZone[N] + battleZone[N] / 2 + battleZone[N] % 2;
-    //Snuke = Snuke - battleZone[N] + battleZone[N] / 2;
-    if(Fennec > Snuke){
+    //cout << ans << endl;
+    ans = 0;
+    dfs(1,trueGoal);
+    //cout << ans << "," << trueGoal << endl;
+
+    if(N - ans - 1 < ans - 1){
         cout << "Fennec" << endl;
     }else{
         cout << "Snuke" << endl;
