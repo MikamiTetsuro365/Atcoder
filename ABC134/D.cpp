@@ -27,8 +27,6 @@ vector< ll > divisor(ll n) {
 }
 
 int main(){
-    //ll P , Q , R;
-    //cin >> P >> Q  >> R;
 
     ll N;
     cin >> N ;
@@ -40,48 +38,43 @@ int main(){
         cin >> A[i];
     }
     
-    for(ll i = 0; i < N ; i++){
+    for(ll i = N - 1; i >= 0 ; i--){
         vector<ll > rat = divisor(i + 1);
-        //ll cn = 0;
-        for(ll j = 0; j < rat.size(); j++){
-            result[rat[j] - 1] += A[i];
-        }
-    }
-
-    for(ll i = 0; i < N; i++){
-        if(result[i] % 2 == A[i]){
-            if(result[i] == 0){
-                ans.push_back(-1);
-            }else{
-                ans.push_back(i + 1); 
+        //cout << result[i] << ":" << A[i] << endl;
+        if((result[i] + 1 ) % 2 == A[i] ){
+            for(ll j = 0; j < rat.size(); j++){
+                result[rat[j] - 1] ++;
+                //cout << rat[j] << ":" << result[rat[j] - 1] << endl;
             }
-            
+            ans.push_back(i + 1);
+            //cout << i + 1 << endl;
+        }else{
+            ans.push_back(-1);
         }
     }
 
-    if(result.empty()){
-        cout << -1 << endl;
-        return 0;
-    }
+    reverse(ans.begin(), ans.end());
 
-    vector<ll > true_ans; 
     ll cn = 0;
-
+    vector<ll > true_ans;
     for(ll i = 0; i < ans.size(); i++){
         if(ans[i] != -1){
             cn++;
             true_ans.push_back(ans[i]);
         }
-    }   
+    }
 
-    if(cn == 0){
-        cout << 0 << endl;
-    }else{
+    if(cn != 0){
         cout << cn << endl;
-        for(ll i = 0; i < true_ans.size() - 1; i++){
+        for(ll i = 0; i < true_ans.size() - 1 ; i++){
             cout << true_ans[i] << " ";
         }
         cout << true_ans[true_ans.size() - 1] << endl;
+    }else{
+        cout << "0" << endl;
+
     }
+
+
     
 }
