@@ -9,25 +9,26 @@
 #include <iomanip>
 #include <typeinfo>
 #include <stack>
-#include <map>
- 
-using namespace std;
-typedef long long int ll;
 
+using namespace std;
+typedef long long ll;
+ll N;
 
 int main(){
 
-    ll Q, H, S, D;
-    cin >> Q >> H >> S >> D;
-
-    H /= 2;
-    S /= 4;
-    D /= 8;
-
     ll N;
-    cin >> N;
 
-    N /= 0.25;
+    cin >> N;
+    ll ans = 0;
+    for(ll i = 1; i <= N; i++){
+        string s = to_string(i);
+        if(s.length() % 2 == 1){
+            ans++;
+        }
+    }
+
+    cout << ans << endl;
+
 
 
 

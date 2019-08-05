@@ -9,26 +9,24 @@
 #include <iomanip>
 #include <typeinfo>
 #include <stack>
-#include <map>
- 
-using namespace std;
-typedef long long int ll;
 
+using namespace std;
+typedef long long ll;
+ll N;
 
 int main(){
 
-    ll Q, H, S, D;
-    cin >> Q >> H >> S >> D;
+    ll A, B, C;
 
-    H /= 2;
-    S /= 4;
-    D /= 8;
+    cin >> A >> B >> C;
 
-    ll N;
-    cin >> N;
+    ll ans = C - (A - B);
+    if(ans < 0){
+        cout << 0 << endl;
+        return 0;
+    }
 
-    N /= 0.25;
+    cout << ans << endl;
+    
 
-
-
-} 
+}
