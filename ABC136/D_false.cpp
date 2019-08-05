@@ -14,6 +14,8 @@ using namespace std;
 typedef long long ll;
 ll N;
 
+//解法は合っていたがTLEが発生したコード
+
 int main(){
 
     string S;
@@ -21,12 +23,9 @@ int main(){
     
     vector<ll > posi(S.length(), 0); 
 
-    for(j = i; j < S.length(); j++){            
-        if(S[j] == 'L'){
-            break;
-        }
-        count++;
-    }   
+    vector<ll > table(S.length(), 0);
+
+    ll count = 0;
 
     for(ll i = 0; i < S.length(); i++){
         //cout << S[i] << endl;
