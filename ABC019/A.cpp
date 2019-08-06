@@ -19,16 +19,24 @@ int main(){
 
     ll Q, H, S, D;
     cin >> Q >> H >> S >> D;
-
-    H /= 2;
-    S /= 4;
-    D /= 8;
-
     ll N;
     cin >> N;
 
-    N /= 0.25;
+    vector<ll > A(4, 0);
+    A[0] = D;
+    A[1] = 2 * S;
+    A[2] = 4 * H;
+    A[3] = 8 * Q;
 
+    vector<ll > B(3, 0);
+    B[0] = S;
+    B[1] = 2 * H;
+    B[2] = 4 * Q;
+
+    sort(A.begin(), A.end());
+    sort(B.begin(), B.end());
+
+    cout << (N / 2) * A[0] + (N % 2) * B[0] << endl;
 
 
 } 
