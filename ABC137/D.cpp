@@ -17,11 +17,6 @@ ll N;
 
 int main(){
 
-    ll N, M;
-    cin >> N >> M;
-
-    vector<pair <ll, ll > >
-
 
 
 }
