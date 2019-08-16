@@ -18,27 +18,25 @@ int main(){
 
     ll N, K;
     cin >> N >> K;
-    ll ans1 = 0;
-    ll ans2 = 0;
-    ll ans3 = 0;
-    
-    for(ll i = 1; i <= N ; i++){
-        if((3 * i) * 2 % K == 0){
-            ans3++;
-        }
-        for(ll j = i + 1; j <= N; j++){
-            if((2 * i + j) * 2 % K == 0){
-                ans2++;
-            }
-            for(ll k = j + 1; k <= N; k++){
-                //cout << i << " " << j << " " << k << endl;
-                if((i + j + K) * 2 % K == 0){
-                    ans1++;
-                }
-            }            
-        }
-    }
 
-    cout << ans3 + ans2 * 3 + ans1 * 6 << endl;
+    ll ans = 0;
+
+    if(K % 2 == 0){
+        ans = pow(N / K, 3);
+        //K/2余る数
+        ll t = 0;
+        for(ll i = 1; i <= N; i++){
+            if(i % K == K / 2){
+                t++;
+            }
+        }
+        ans += pow(t, 3);
+
+        cout << ans << endl;
+
+    }else{
+        ans = pow(N / K, 3);
+        cout << ans << endl;
+    }
 
 } 
