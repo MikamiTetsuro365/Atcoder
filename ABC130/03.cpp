@@ -18,20 +18,21 @@ ll M;
 string s;
 vector<ll > input1;  
 vector<vector <ll > > input2;
-
+//四角形の中点に座標がしていされていれば分け方はいっぱいある
+//それ以外はNG
+//基本的に座標が指定されても面積は二分割できる
 int main(){
     
     //cin >> N;
     double W, H, x , y;
     cin >> W >> H >> x >> y;
-    
+
+    cout << fixed << setprecision(9)  << W * H / 2.0;
+
     if(W / 2 == x && H / 2 == y){
-        cout << setprecision(9)  << W * H / 2.0;
         cout << " 1"  << endl;
     }else{
-        cout << setprecision(9)  << W * H / 2.0;
         cout << " 0"  << endl;
     }
-
 
 } 
