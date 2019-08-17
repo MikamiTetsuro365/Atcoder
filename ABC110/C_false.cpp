@@ -19,13 +19,19 @@ int main(){
     map<char, vector<char > > s;
     map<char, vector<char > > t;
 
-    sort(S.begin(), S.end());
-    sort(T.begin(), T.end());
+    //sort(S.begin(), S.end());
+    //sort(T.begin(), T.end());
     //cout << S << endl;
     //cout << T << endl;
 
     for(ll i = 0; i < S.length(); i++){
         //S????????
+        /* 
+        if(S[i] == T[i]){
+            continue;
+        }
+        */
+
         if(s[S[i]].size() == 0){
             s[S[i]].push_back(T[i]);
         }else{
