@@ -9,94 +9,83 @@
 #include <iomanip>
 #include <typeinfo>
 #include <stack>
-#include <map>
- 
+
 using namespace std;
-typedef long long int ll;
-ll f_flg[1145141];
-ll s_flg[1145141];
+typedef long long ll;
+
+ll flg[1145141];
 vector<ll > G[1145141];
-//各スタート位置から対戦相手のノードに到るまで繋がっているノードの総数
-ll Fennec = -1;
-ll Snuke = -1;
-//FennecがSnukeまでたどり着くのに到達するまでにどの頂点を通ったか？とスターチ位置からの距離を格納するやつ
-vector<pair <ll, ll > > where(1145141);
-//取り合うことで勝負が決まる　ノードとノードで挟まれた回廊
-ll battleZone[1145141];
-ll N = 0;
-ll ans = 0;
+vector<ll > ans;
 //flg = 1 すでに到達済み 0＝まだ到達していない
-//player == 0 Fennec, player == 1 sunuke
-
-ll dfs(ll idx, ll end , ll from = -1){
-    
-    //どこからどこへ行く？
-    if(idx != 1) where[idx] = make_pair(from, battleZone[from]);  
-
-    if(idx == end){
-        //伝搬させておくと楽
-        battleZone[idx] = battleZone[from];
+void dfs(ll idx, ll from = -1){
+    /*
+    ll f = 1;
+    if(flg[idx] == 1){
         return 0;
     }
+    */
 
-    if(from != -1){
-        //はじめ以外伝搬
-        battleZone[idx] = battleZone[from] + 1;
-    }  
+    //参照したので到達済みフラグを１にする
+    //flg[idx] = 1;
 
-    if(f_flg[idx] == 1){
-        return 0;
-    }
-    f_flg[idx] = 1;
-
-    //cout << from << endl;
     for(ll i = 0; i < G[idx].size(); i++){
         //次の行き先は？
         ll to = G[idx][i];
-
         //同じだったらもう処理しない
+        //頂点に戻ってきたら
         if(to == from){
             continue;
         }
-        dfs(to, end, idx);
-        ans++;
+
+        ans[to] += ans[idx];
+        dfs(to, idx);
+        //閉路は無い想定なので不要！
+        //from = idx > toへ
+        //もしすでに到達済みの場所を参照したら、木ではなく閉路のある無向グラフ
+        /*
+        if(dfs(to, idx) == 1){
+            //閉路ですよ
+            f = 0;
+        }
+        */
     }
-    
-    return 0;
+    //1が帰ったら木ですよ
+    /* 
+    return f;
+    */
+
 }
- 
+
 int main(){
-    
+
     ll N, Q;
     cin >> N >> Q;
+    ans.resize(N);
+    //グラフを貼ります(今回は木)
     vector<ll > u(N-1);
     vector<ll > v(N-1);
-
-    vector<ll > ans(N);
- 
-    for(ll i = 0; i < N - 1; i++){
+    for(ll i = 0; i < N-1; i++){
         cin >> u[i];
         cin >> v[i];
+        u[i]--;
+        v[i]--;
+        //双方向に貼りましょうね
         G[u[i]].push_back(v[i]);
-        //G[v[i]].push_back(u[i]);
+        G[v[i]].push_back(u[i]);
     }
-
+    //あるノードからそれ以下のノードに流し込むコストをどんどん加算していく
+    for(ll i = 0; i < Q; i++){
+        ll p, x;
+        cin >> p >> x;
+        ans[p-1] += x;
+    }
+    //伝搬実行
+    dfs(0);
     for(ll i = 0; i < N - 1; i++){
-        for(ll j = 0; j < G[i].size(); j++){
-            cout << G[i][j] << " ";
-        }        
-        cout << endl;
+        cout << ans[i] << " ";
     }
-    //部分技の集合を作りましょう
-    vector<ll > connect(N);
-    for(ll i )
-
-
-    //battleZone[0] = 0;
-    //battleZone[1] = 0;
-    //Fennecが塗りつぶせる数 スタート：ノード１
-    dfs(1, N);
     
+    cout << ans[N - 1] << endl;
 
- 
-} 
+
+}
