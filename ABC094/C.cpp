@@ -18,12 +18,36 @@ int main(){
 
     ll N = 0;
     cin >> N;
-    vector<ll > a(N);
+    vector<pair<ll, ll > > a;
+    //map<ll >
 
     for(ll i = 0; i < N; i++){
-        cin >> a[i];
-
+        ll in = 0;
+        cin >> in;
+        a.push_back(make_pair(in, i));
     }
+
+    sort(a.begin(), a.end());
+
+    vector<ll > ans(N);
+
+    for(ll i = 0; i < N; i++){
+        if(i < N / 2){
+            //ans += a[N / 2 + 1];
+            ans[a[i].second] = a[N / 2].first;
+        }else{
+            //ans += a[N / 2];
+            ans[a[i].second] = a[N / 2 -1].first;
+        }
+    }
+
+    //表示
+    for(ll i = 0; i < N; i++){
+        cout << ans[i] << endl;
+    }
+
+    //cout << ans << endl;
+
 
 
 } 
