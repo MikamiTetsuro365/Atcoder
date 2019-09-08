@@ -95,10 +95,51 @@ int main(){
 
 }
 
+```
+# 累積和
+**基本的なイメージはここよぉ[paiza](https://paiza.hatenablog.com/entry/2015/01/21/%E3%80%90%E7%B4%AF%E7%A9%8D%E5%92%8C%E3%80%81%E3%81%97%E3%82%83%E3%81%8F%E3%81%A8%E3%82%8A%E6%B3%95%E3%80%91%E5%88%9D%E7%B4%9A%E8%80%85%E3%81%A7%E3%82%82%E8%A7%A3%E3%82%8B%E3%82%A2%E3%83%AB%E3%82%B4)**
 
+## まとめる処理
+**たまに数列とかを同じ者同士でまとめる必要があるので**
+
+```cpp
+for(ll i = 0; i < s.size();){
+    ll j = i;
+    //一緒の間ループを回し続けて，切れ目を探す
+    while(j < s.size() && s[j] == s[i]){
+        ++j;
+    }
+    vec.push_back(j - i);
+    //次の始点へすっ飛ばす
+    i = j;
+}
 ```
 
-# あばばば
+##累積和のメイン処理
+**合計を順番にとっていく＋leftとrightを操作しながらある区間の合計を取っていく**
+```cpp
+//先頭は必ず0からスタート
+vector<ll > sum(vec.size() + 1, 0);
+for(ll i = 0; i < vec.size(); i++){
+    //1つ前との合計を取っていく
+    sum[i + 1] = sum[i] + vec[i];
+}
+
+//累積和メイン
+ll ans = 0;
+for(ll left = 0; left < sum.size(); left += 2){
+    //K * 2 + 1の部分を合計を取りたい任意の区間の要素数に合わせる
+    ll right = left + K * 2 + 1;
+    //バグらせ防止, rightが伸びきったらもう動かさない終端でleftが上がってくるのを待つ
+    if(right >= sum.size()){
+        right = sum.size() - 1;
+    }
+    //sum[right] - sum[left]である区間の合計がわかります.
+    ans = max(ans, sum[right] - sum[left]);
+}
+```
+
+#　あばばば
 **概要**
 ```cpp
 
