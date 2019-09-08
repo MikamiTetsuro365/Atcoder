@@ -3,6 +3,13 @@ Atcoder関連はここにまとめます(精進)
 includeは適当に書いてね
 
 # たまに忘れる奴ら
+**多次元ベクター(下は二次元)**
+```cpp
+ll n_rows = 5;
+ll n_cols = 5;
+ll value = 0;
+vector<vector<ll > > vec(n_rows, vector<ll >(n_cols, value));
+```
 
 # コピペで使いたい奴ら
 
@@ -144,3 +151,5 @@ for(ll left = 0; left < sum.size(); left += 2){
 ```cpp
 
 ```
+
+
