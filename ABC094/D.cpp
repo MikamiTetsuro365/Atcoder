@@ -14,7 +14,7 @@
 using namespace std;
 typedef long long int ll;
 
-//最大の中央値に近いものを選ぶと最大になるぞいというお気持ち
+//最大値と最大の中央値に近いものを選ぶと組み合わせは最大になるぞいというお気持ち
 int main(){
 
     ll N = 0;
