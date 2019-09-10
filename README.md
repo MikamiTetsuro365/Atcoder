@@ -146,6 +146,8 @@ for(ll left = 0; left < sum.size(); left += 2){
 }
 ```
 
+##しゃくとり法
+
 #　あばばば
 **概要**
 ```cpp
