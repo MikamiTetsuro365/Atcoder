@@ -146,6 +146,11 @@ for(ll left = 0; left < sum.size(); left += 2){
 }
 ```
 
+
+# 橋
+**とてもわかり易い説明.特に6段目がよさみあふれる[ここ](http://kagamiz.hatenablog.com/entry/2013/10/05/005213)**
+
+
 #　あばばば
 **概要**
 ```cpp
