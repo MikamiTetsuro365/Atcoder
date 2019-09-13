@@ -23,8 +23,7 @@ vector<ll > low;
 vector<bool > reach;
 vector<pair<ll, ll > > ans;
 //カウンター
-ll dfs(ll idx, ll from = -1, ll pre_count = -1){
-    //
+void dfs(ll idx, ll from = -1, ll pre_count = -1){
     reach[idx] = true;
     pre[idx] = pre_count++;
     low[idx] = pre[idx];
@@ -38,26 +37,23 @@ ll dfs(ll idx, ll from = -1, ll pre_count = -1){
         if(pre[to] == -1){
             //dfsを実行する
             //到達できる頂点の中で一番小さいpreを採用する
-            low[idx] = min(low[idx], dfs(to, idx, pre_count));
+            dfs(to, idx, pre_count);
+            low[idx] = min(low[idx], low[to]);
             //dfs(to, idx, pre_count);
             //low[idx] = min(low[idx], low[to]);
-            if(low[to] == pre[to]){
+
+            //後退辺を使ったとしても根やそれ以上に戻ってきていない→つまりここが橋
+            if( low[to] > pre[idx]){
                 ans.push_back(make_pair(idx, to));
             }
-        }else{
-            //探査済みのととき
-
-            //走査を開始した根に戻ってきた
-            if(from == to){
-                continue;
-            }
-
-            low[idx] = min(low[idx], low[to]);
+        }else if(to != from){
+            //すでに探査済みかつ根に戻ってきていないなら
+            low[idx] = min(low[idx], pre[to]);
         }
  
     }
 
-    return low[idx];
+    //return low[idx];
 }
 
 
@@ -85,12 +81,17 @@ int main(){
         G[v].push_back(make_pair(u, w));
     }
 
-    dfs(0);
-    cout << ans.size() - 1<< endl;
+    for(ll i = 0; i < N; i++){
+        if(!reach[i])dfs(i);
+    }
     
+    cout << ans.size()<< endl;
+    
+    /*
     for(ll i = 0; i < ans.size(); i++){
         cout << ans[i].first << "," << ans[i].second << endl;
     }
+    */
     
 
 }
