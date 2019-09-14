@@ -180,7 +180,21 @@ for(ll left = 0; left < sum.size(); left += 2){
 **とてもわかり易い説明.特に6段目がよさみあふれる[ここ1](http://kagamiz.hatenablog.com/entry/2013/10/05/005213)[ここ２](https://ei1333.github.io/luzhiled/snippets/graph/lowlink.html)[ここ3](https://www.slideshare.net/chokudai/arc045)**
 
 
+# 気持ちの良いDP
+**[ここ](https://atcoder.jp/contests/abc060/tasks/arc073_b)**
 
+# 整数と小数の判定
+**クソどうでも良いけど...ceil(切り上げ)とfloor(切り捨て)で同じだと整数(少数ではない)**
+```cpp
+double ans;
+cin >> ans;
+//cout << ans << endl;
+if(ceil(ans) != floor(ans)){
+    cout << "No" << endl;
+}else{
+    cout << "Yes" << endl;
+}
+```
 
 #　あばばば
 **概要**
