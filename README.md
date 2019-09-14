@@ -22,7 +22,7 @@ for (auto iter = begin; iter != end; iter++) {
 }
 
 ```
-#最小公倍数
+# 最小公倍数
 **N個の最小公倍数=最小公倍数の最小公倍数の最小公倍数(ry**
 ```cpp
 ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
@@ -37,7 +37,7 @@ ll gcd(ll a, ll b){
 }
 ```
 
-#最小公倍数
+# 最小公倍数
 
 
 # コピペで使いたい奴ら
