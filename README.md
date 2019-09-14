@@ -11,6 +11,35 @@ ll value = 0;
 vector<vector<ll > > vec(n_rows, vector<ll >(n_cols, value));
 ```
 
+# map全列挙
+```cpp
+
+map<ll, ll> mp;
+//ここになにか入力
+auto begin = mp.begin(), end = mp.end();
+for (auto iter = begin; iter != end; iter++) {
+    cout << iter -> first << " " <<  iter -> second << endl;
+}
+
+```
+#最小公倍数
+**N個の最小公倍数=最小公倍数の最小公倍数の最小公倍数(ry**
+```cpp
+ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
+```
+
+```cpp
+ll gcd(ll a, ll b){
+    if(b == 0){
+        return a;
+    }
+    return gcd(b, a % b);
+}
+```
+
+#最小公倍数
+
+
 # コピペで使いたい奴ら
 
 
@@ -149,6 +178,8 @@ for(ll left = 0; left < sum.size(); left += 2){
 
 # 橋
 **とてもわかり易い説明.特に6段目がよさみあふれる[ここ1](http://kagamiz.hatenablog.com/entry/2013/10/05/005213)[ここ２](https://ei1333.github.io/luzhiled/snippets/graph/lowlink.html)[ここ3](https://www.slideshare.net/chokudai/arc045)**
+
+
 
 
 #　あばばば
