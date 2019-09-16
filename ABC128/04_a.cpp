@@ -42,7 +42,9 @@ int main(){
                 sum += V[N-i-1];
             }
             //マイナスの価値の宝石を消す
-            for(ll i = 0; i < min(K - l -r, (ll)que.size()); i++){
+            for(ll i = 0; i < K - l - r; i++){
+                if(que.empty()) break;
+                if(que.top() > 0) break;
                 if(que.top() < 0){
                     sum -= que.top();
                     que.pop();
