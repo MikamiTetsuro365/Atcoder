@@ -39,10 +39,6 @@ ll gcd(ll a, ll b){
 
 # 最小公倍数
 
-
-# コピペで使いたい奴ら
-
-
 # テンプレ
 ```cpp
 
@@ -94,7 +90,7 @@ int main(){
 ```
 
 # dfs
-**グラフや木を作って実行してくれい.**
+**グラフや木を作って実行してくれい.[ABC070_D](https://atcoder.jp/contests/abc070/tasks/abc070_d)[ABC_067_D](https://atcoder.jp/contests/abc067/tasks/arc078_b)←忘れた頃にもう一度解け**
 ```cpp
 void dfs(ll idx, ll from = -1){
  
@@ -108,7 +104,7 @@ void dfs(ll idx, ll from = -1){
             continue;
         }
 
-        //下は例です．この跡に色々処理を使いして幸せになりましょう
+        //下は例です．この跡に色々処理を書いて幸せになりましょう
         /*    
         if(G[idx][i].second % 2 == 0){
             ans[to] = ans[idx];
@@ -181,7 +177,7 @@ for(ll left = 0; left < sum.size(); left += 2){
 
 
 # 気持ちの良いDP
-**[ここ](https://atcoder.jp/contests/abc060/tasks/arc073_b)**
+**VectorでDPテーブルを作ってしまうと膨大なメモリ空間にアクセスする必要があるのでTLE必須→Mapで頑張った[ARC073_B](https://atcoder.jp/contests/abc060/tasks/arc073_b)**
 
 # 整数と小数の判定
 **クソどうでも良いけど...ceil(切り上げ)とfloor(切り捨て)で同じだと整数(少数ではない)**
@@ -195,6 +191,28 @@ if(ceil(ans) != floor(ans)){
     cout << "Yes" << endl;
 }
 ```
+
+# next_permutation
+**順列を生成する便利な奴[アルゴリズム](https://scrapbox.io/ganariya/%E8%BE%9E%E6%9B%B8%E5%BC%8F%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)**
+**この考え方が役に立った問題[AGC022_A](https://atcoder.jp/contests/agc022/tasks/agc022_a)**
+```cpp
+ll N;
+cin >> N;
+//数列入力
+vector<ll > A(N, 0);
+for(ll i = 0; i < N; i++){
+    cin >> A[i];  
+}
+
+do{
+    for(ll i = 0; i < A.size(); i++){
+        cout << A[i];
+    }
+    cout << endl;
+}while(next_permutation(A.begin(), A.end()));
+
+```
+
 
 #　あばばば
 **概要**
