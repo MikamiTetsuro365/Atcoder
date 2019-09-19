@@ -22,6 +22,23 @@ for (auto iter = begin; iter != end; iter++) {
 }
 
 ```
+
+# Priority queue(優先度付きQueue)
+```cpp
+priority_queue<ll > que;
+//昇順にしたい時
+//priority_queue<ll ,vector<ll >, greater<ll > > que;
+
+que.push(1);
+que.push(2);
+que.push(3);
+
+while(!empty()){
+    cout << que.top() << endl;
+    que.pop()
+}
+```
+
 # 最小公倍数
 **N個の最小公倍数=最小公倍数の最小公倍数の最小公倍数(ry**
 ```cpp
@@ -218,6 +235,7 @@ do{
 }while(next_permutation(A.begin(), A.end()));
 
 ```
+
 
 
 # あばばば
