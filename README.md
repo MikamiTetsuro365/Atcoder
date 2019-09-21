@@ -106,7 +106,7 @@ int main(){
 ```
 
 # dfs
-**グラフや木を作って実行してくれい.[ABC070_D](https://atcoder.jp/contests/abc070/tasks/abc070_d)[ABC_067_D](https://atcoder.jp/contests/abc067/tasks/arc078_b)←忘れた頃にもう一度解け**
+**グラフや木を作って実行してくれい.[ABC070_D](https://atcoder.jp/contests/abc070/tasks/abc070_d) [ABC_067_D](https://atcoder.jp/contests/abc067/tasks/arc078_b)←忘れた頃にもう一度解け**
 ```cpp
 void dfs(ll idx, ll from = -1){
  
@@ -135,7 +135,6 @@ void dfs(ll idx, ll from = -1){
 }
 
 int main(){
-
     //グラフを作る
 
     //dfs 実行
@@ -195,7 +194,7 @@ for(ll left = 0; left < sum.size(); left += 2){
 
 
 # 橋
-**とてもわかり易い説明.特に6段目がよさみあふれる[ここ1](http://kagamiz.hatenablog.com/entry/2013/10/05/005213)[ここ２](https://ei1333.github.io/luzhiled/snippets/graph/lowlink.html)[ここ3](https://www.slideshare.net/chokudai/arc045)**
+**とてもわかり易い説明.特に6段目がよさみあふれる[ここ1](http://kagamiz.hatenablog.com/entry/2013/10/05/005213) [ここ２](https://ei1333.github.io/luzhiled/snippets/graph/lowlink.html) [ここ3](https://www.slideshare.net/chokudai/arc045)**
 
 
 # 気持ちの良いDP

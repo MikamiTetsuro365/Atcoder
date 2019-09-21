@@ -15,8 +15,7 @@
 
 using namespace std;
 typedef long long int ll;
-//考察が詰めきれず難しかった.
-//クソコードにより添字地獄が発生して無限バグらせ死亡
+
 int main(){
 
     string S;
