@@ -11,7 +11,7 @@ void isPrime(ll N){
     prime[1] = false;
 
     //ルートN以下まで繰り返す
-    for(ll i = 2; i < ceil(sqrt(N) + 0.1) ; i++){
+    for(ll i = 2; i < ceil(sqrt(N)) ; i++){
         //素数になりえないとき
         if(prime[i] == false) continue;
         
