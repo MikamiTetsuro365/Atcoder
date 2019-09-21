@@ -1,6 +1,12 @@
 # Atcoder
 Atcoder関連はここにまとめます(精進)
 
+#include
+**bitsフォルダをコピペして以下を貼り付け**
+```cpp
+#include "bits/stdc++.h"
+```
+
 # たまに忘れる奴ら
 **多次元ベクター(下は二次元)**
 ```cpp
@@ -32,7 +38,7 @@ que.push(1);
 que.push(2);
 que.push(3);
 
-while(!empty()){
+while(!que.empty()){
     cout << que.top() << endl;
     que.pop()
 }
