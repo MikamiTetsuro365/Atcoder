@@ -280,7 +280,33 @@ int main(){
 } 
 ```
 
+# 高速な累乗計算
+**早い.べき数を半分に分けてまとめていく気持ち**
+```cpp
+#include "bits/stdc++.h"
+using namespace std;
+typedef long long ll;
 
+ll mod = 1e9 + 7;
+
+ll fast_pow(ll a, ll n){
+    if(n == 0) return 1;
+    //べき数nが奇数, aを前にだして, a^n-1の気持ちに
+    if(n % 2 == 1){
+        return a * fast_pow(a, n - 1) % mod;
+    }else{
+        //べき数nが偶数のとき，べき数を半分にして, aをまとめる. べき数を半分にする
+        return fast_pow(a * a % mod, n / 2) % mod;
+    }
+}
+
+int main(){
+    ll A, N;
+    cin >> A >> N;
+    fast_pow(A, N)
+    cout << fast_pow(A, N) << endl;
+} 
+```
 
 # あばばば
 **概要**
