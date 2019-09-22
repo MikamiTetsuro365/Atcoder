@@ -44,8 +44,8 @@ while(!que.empty()){
 }
 ```
 
-# 最小公倍数
-**N個の最小公倍数=最小公倍数の最小公倍数の最小公倍数(ry**
+# 最大公倍数
+**N個の最大公倍数=最大公倍数の最大公倍数の最大公倍数(ry**
 ```cpp
 ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
 ```
@@ -58,6 +58,7 @@ ll gcd(ll a, ll b){
     return gcd(b, a % b);
 }
 ```
+
 
 # 最小公倍数
 
