@@ -7,7 +7,6 @@ Atcoder関連はここにまとめます(精進)
 #include "bits/stdc++.h"
 ```
 
-## たまに忘れる奴ら
 # 多次元ベクター(下は二次元)
 ```cpp
 ll n_rows = 5;
