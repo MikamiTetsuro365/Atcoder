@@ -58,6 +58,7 @@ ll gcd(ll a, ll b){
     return gcd(b, a % b);
 }
 ```
+**どちゃくそくそバカでかい数字同士のGCDを取れと言われたら？多言語(Pythonとか)を使うか,考察がんばるか...[No442和と積](https://yukicoder.me/problems/no/442)**
 
 
 # 最小公倍数
