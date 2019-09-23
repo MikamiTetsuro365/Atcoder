@@ -28,7 +28,7 @@ for (auto iter = begin; iter != end; iter++) {
 
 ```
 
-# Priority queue(優先度付きQueue)
+# Priority queue(優先度付きQueue)
 ```cpp
 priority_queue<ll > que;
 //昇順にしたい時

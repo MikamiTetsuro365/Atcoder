@@ -6,7 +6,7 @@ ll N;
 ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
 
 int main(){
-
+    
     ll A, B;
     cin >> A >> B;
     if(A < B){
@@ -16,6 +16,5 @@ int main(){
     ll ans = G * gcd(A / G + B / G, G);
 
     cout << ans << endl;
-
 
 } 
