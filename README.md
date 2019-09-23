@@ -1,14 +1,14 @@
 # Atcoder
 Atcoder関連はここにまとめます(精進)
 
-#include
+# include
 **bitsフォルダをコピペして以下を貼り付け**
 ```cpp
 #include "bits/stdc++.h"
 ```
 
-# たまに忘れる奴ら
-**多次元ベクター(下は二次元)**
+## たまに忘れる奴ら
+# 多次元ベクター(下は二次元)
 ```cpp
 ll n_rows = 5;
 ll n_cols = 5;
