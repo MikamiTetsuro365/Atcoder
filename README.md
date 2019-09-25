@@ -1,10 +1,17 @@
 # Atcoder
 Atcoder関連はここにまとめます(精進)
 
-# include
+# テンプレ
 **bitsフォルダをコピペして以下を貼り付け**
 ```cpp
 #include "bits/stdc++.h"
+
+using namespace std;
+typedef long long int ll;
+
+int main(){
+
+}
 ```
 
 # 多次元ベクター(下は二次元)
