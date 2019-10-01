@@ -8,99 +8,71 @@ int main(){
     ll N;
     cin >> N;
     vector<ll > A;
+    //vector<pair<ll, ll > > order;
+    map<ll, vector<ll > > mp;
 
     //同じ数が連続して続くところは圧縮
+    A.push_back(0);
+    ll t_in = -1;
+    ll num = 1;
     for(ll i = 0; i < N; i++){
-        ll in;
+        ll in = 0;
         cin >> in;
-        if(i == 0){
+        if(in != t_in){
+            mp[in].push_back(num);
             A.push_back(in);
-            continue;
-        }
-        if(A[i] != A[i-1]){
-            A.push_back(in);
+            t_in = in;
+            num++;
         }
     }
-
-    vector<ll > yama;
-    //yama.push_back(0);
-    map<ll, ll> mp;
-
-    //priority_queue<ll > que;
-    //出っ張ってるところを網羅
-    bool yama_flg = true;
-    bool flg = true;
-    for(ll i = 0; i < A.size(); i++){
-        if(i == 0){
-            if(A[i] > A[i + 1]){
-                yama.push_back(0);
-                yama.push_back(A[i]);
-                //que.push(A[i]);
-                mp[A[i]] = 1;
-            }else{
-                yama.push_back(A[i]);
-                yama_flg = false;
-            }
-        }else if(i == A.size() - 1){
-            if(A[i] > A[i - 1]){
-                yama.push_back(A[i]);
-                yama.push_back(0);
-                mp[A[i]] = 1;
-            }else{
-                yama.push_back(A[i]);
-            }       
-        }else if(A[i] > A[i + 1] && A[i] > A[i - 1]){
-            yama.push_back(A[i]);
-            mp[A[i]] = 1;
-        }else if(A[i] < A[i + 1] && A[i] < A[i - 1]){
-            yama.push_back(A[i]);
-        }
-    }
-
-    mp[0] = 1;
-
-    //yama.push_back(0);
-    ll ans = 0;
-    bool r_flag = false;
-    bool l_flag = false;
-    auto begin = mp.begin(), end = mp.end();
-
-    for (auto iter = begin; iter != end; iter++) {
-        ll suimen = iter->first;
-        cout << "suimen : " << suimen << endl;
-        ll t_ans = 0;
-        //cout << que.top() << endl;
-        for(ll i = 1; i < yama.size(); i+=2){
-            cout << "yama "<< yama[i] << endl;
-            if(yama[i] > suimen){
-                if(yama[i + 1] <= suimen){
-                    //cout << "we "<< endl;
-                    r_flag = true;
-                }
-                if(yama[i - 1] <= suimen){
-                    //cout << "ga "<< endl;
-                    l_flag = true;
-                }
-            }
-            if(r_flag == true && l_flag == true){
-                cout << yama[i] << endl;
-                ans++;
-                r_flag = false;
-                l_flag = false;
-            }
-        }
-        cout << "t_ans : " << t_ans << endl; 
-        ans = max(ans, t_ans);
-        //que.pop();
-    }
-
+    A.push_back(0);
 
     //確認
-    /*
-    for(ll i = 0; i < yama.size(); i++){
-        cout << yama[i] << endl;
+    /* 
+    for(ll i = 0; i < A.size(); i++){
+        cout << A[i];
     }
+    cout << endl;
     */
 
-    cout << ans << endl;
+    //例外
+    if(mp.size() == 1){
+        auto begin = mp.begin(), end = mp.end();
+        for (auto iter = begin; iter != end; iter++) {
+            if(iter -> first > 0){
+                cout << "1" << endl;
+                return 0;
+            }else{
+                cout << "0" << endl;
+                return 0;               
+            }
+        }
+    }
+
+
+    ll ans = 1;
+    priority_queue<ll > ansQue; 
+    ansQue.push(ans);
+
+    auto begin = mp.begin(), end = mp.end();
+    for (auto iter = begin; iter != end; iter++) {
+        //cout << iter -> first << " " <<  iter->second.size() << endl;
+        for(ll i = 0; i < iter->second.size(); i++){
+            A[mp[iter -> first][i]] = 0;
+            //cout << mp[iter -> first][i] - 1 << " " << mp[iter -> first][i] + 1 << endl;
+            ll left  = A[mp[iter -> first][i] - 1];
+            ll right = A[mp[iter -> first][i] + 1];
+            
+            if(left == 0 && right  == 0 ){
+                ans--;
+            }else if(left > 0 && right  > 0){
+                ans++;
+            }
+
+        }
+        ansQue.push(ans);
+        //cout << ans << endl;
+    }
+ 
+    cout << ansQue.top() << endl;
 }
