@@ -87,7 +87,7 @@ vector<ll > divisor(ll n) {
     }
   }
   sort(div.begin(), div.end());
-  return (ret);
+  return (div);
 }
 ```
 
@@ -282,6 +282,51 @@ int main(){
         cout << prime[i] << endl;
     }
 } 
+```
+
+# 素因数分解
+**素因数分解の気持ち**
+```cpp
+#include "bits/stdc++.h"
+
+using namespace std;
+typedef long long int ll;
+
+map<ll, ll> primeFactor(ll num){
+
+    //素因数と指数部の並び
+    map<ll, ll > PF;
+
+    ll i = 2;
+
+    while(num >= i * i){
+        if(num % i == 0){
+            PF[i]++;
+            num /= i;
+        }else{
+            i++;
+        }
+    }
+    //1は素因数分解できない
+    if(num != 1){
+        PF[num]++;
+    }
+    
+    return PF;
+}
+
+int main(){
+
+    ll num;
+    cin >> num;
+
+    map<ll, ll> PF = primeFactor(num);
+
+    auto begin = PF.begin(), end = PF.end();
+    for (auto iter = begin; iter != end; iter++) {
+        //ここで出力
+    }
+}
 ```
 
 # 高速な累乗計算
