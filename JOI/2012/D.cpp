@@ -17,19 +17,20 @@ int main(){
     }
 
     ll value = 0;
-    vector<vector<ll > > dp(N + 1, vector<ll >(3, value));
-    dp[0][0] = 1;
-
-    vcector<ll > used(3, 0);
+    //vector<vector<ll > > dp(N + 1, vector<ll >(3, value));
+    //0日目から初めて　メニュー0 = 前日は何も食べていない
+    vector<vector<vector<ll > > > dp(N, vector<vector<ll > >(4, vector<ll >(4, -1)));
+    //経過日数、前々日、前日
+    dp[0][0][0] = 0;
 
     for(ll i = 1; i < N; i++){
         for(ll j = 0; j < 3; j++){
-            if(used[j] < 3){
-                dp[i] +=  
+            dp[i][j][k] = dp[i-1][j][k];
+            for(ll k = 0; k < 3; k++){
+
             }
         }
-    } 
-
+    }  
 
 
 }
