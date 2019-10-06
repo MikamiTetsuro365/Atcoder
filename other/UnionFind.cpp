@@ -56,7 +56,7 @@ struct UnionFind{
         size[ty] = s;
 
         //tree[tx] = ty;
-        //高くない方にくっつけたい：効果がいまいちわからん
+        //高くない方にくっつけたい
         //下：ランク付けのつもり 
         if(rank[tx] < rank[ty]){
             //小さい方を大きい方
