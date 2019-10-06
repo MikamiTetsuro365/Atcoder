@@ -24,6 +24,7 @@ int main(){
     }
 
     //前処理 最も小さいやつと最も大きいやつだけ集める
+    //use[0]は余白
     vector<vector<ll > > use(D + 1, vector<ll >(3, 0));
     vector<ll > mn;
     vector<ll > mx;
