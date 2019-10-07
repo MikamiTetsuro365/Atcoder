@@ -94,36 +94,58 @@ int main() {
         G[v].push_back(make_pair(u, w));    
     }
 
-    
-    vector<vector<ll > > DIS;
+    ll ans = INFINITY;
+    //全探査
     for(ll i = 0; i < N; i++){
-        //ll t_ans = 0;
-        vector<ll > t_dis = dijkstra(i);
-        DIS.push_back(t_dis);
-    }
-
-    ll ans =  INFINITY;
-    //ll t_ans = 0;
-    for(ll depot = 0; depot < N; depot++){
-        ll base = 0;
-        for(ll j = 0; j < N; j++){
-            base += DIS[depot][j] * 2 * T[j]; 
-        }
-        //cout << base << endl;
-        for(ll j = 0; j < N; j++){
-            if(T[j] > 0){
-                ll sm = DIS[L-1][j] + DIS[j][depot];
-                //cout << sm << endl;
-                ll t_ans = base - DIS[depot][j] * 2 + sm;
-                //cout << t_ans << endl;
-                ans = min(t_ans, ans);
+        ll t_ans = 0;
+        vector<ll > dis = dijkstra(i);
+        //レッカー車の初期位置以外に集めるとき
+        //Lから集積場所まで集めておく
+        bool f = false;
+        ll tmp_posi = 0;
+        //集積所とレッカー車が別の場所にあるとき
+        if(i != L - 1){
+            //集積所までの経路を出す
+            vector<ll > path = get_path(L - 1);
+            //集積所にレッカー車を向かわせる途中でトラックがおいてある場所が
+            //あればトラックを拾ってから集積所に行く（効率的）
+            for(ll j = 0; j < path.size();j++){
+                if(T[path[j]] > 0){
+                    //トラックを無事拾えたら拾った場所を記録
+                    f = true;
+                    tmp_posi = path[j];
+                    //拾ったところでトラックの台数を減らす
+                    T[path[j]]--;
+                    break;
+                }
             }
-           
-        }  
+            //レッカー車の移動距離に拾ったところから集積所までの距離を足しておく
+            t_ans += dis[L - 1];
+        }
+        //集積所から各交差点へトラックをひたすら回収したときの距離を計算
+        for(ll j = 0; j < N; j++){
+            //最初から集積所のトラックが集まっているので
+            if(i == j) continue;
+            t_ans += dis[j] * 2 * T[j]; 
+        }
+        //トラックを拾ったところにトラックを戻す
+        if(f == true){
+            T[tmp_posi]++;
+        }
+        ans = min(ans, t_ans);
     }
-
 
     cout << ans << endl;
+    /*
+    dijkstra(0);
+    vector<ll > ans = get_path(4);
+    for(ll i=0; i < ans.size();i++){
+        cout << ans[i]+1 << endl;
+    }
+    */
 
+    //dijkstra(2);
+ 
+    //cout << ans << endl;
  
 }
