@@ -373,11 +373,13 @@ vector<ll > prever;
 vector<ll > dijkstra(ll start){
     //準備
     vector<bool > used(N, false);
-    vector<ll > dist(N, 1<<28);
+    vector<ll > dist(N, INFINITY);
     prever.assign(N, -1);
     priority_queue<pair<ll, ll > , vector<pair<ll, ll > >, greater<pair<ll, ll > > > que;
     //初期化
     que.push(make_pair(0, start));
+ 
+    //cout << que.top().first << endl;
  
     while(!que.empty()){
         //距離
@@ -408,28 +410,28 @@ vector<ll > dijkstra(ll start){
             //仮dist
             dist[to] = cost;
         }
+        //cout << endl;
     }   
+    
     return dist;
+ 
 }
 
 vector<ll > get_path(ll t){
     vector<ll > path;
     for(; t != -1; t = prever[t]){
-        cout << prever[t] << endl;
+        //cout << prever[t] << endl;
         path.push_back(t);
     }
-    reverse(path.begin(), path.end());
+    //reverse(path.begin(), path.end());
     return path;
 }
+ 
  
 int main() {
     //頂点数
     cin >> N >> M >> L;
-    //トラックの数
-    vector<ll > T(N, 0);
-    for(ll i = 0; i < N; i++){
-        cin >> T[i];
-    }
+
     G.assign(N, vector<pair<ll, ll > >());
  
     for(ll i = 0; i < M; i++){   
@@ -438,7 +440,6 @@ int main() {
         u--;
         v--;
         //双方向に貼りましょうね
-        //make_pair(重み,貼りたい辺の先の頂点)
         G[u].push_back(make_pair(v, w));
         G[v].push_back(make_pair(u, w));    
     }
