@@ -69,9 +69,12 @@ ll gcd(ll a, ll b){
 
 # 最小公倍数
 
-# テンプレ
+# 立っているビットをカウント
+**GCCの__builtin関数[ここ](https://qnighy.hatenablog.com/entry/20090921/1253551047)**
 ```cpp
-
+ll n;
+cin >> n;
+ll bit_count = __builtin_popcount(n);
 ```
 
 # 約数
