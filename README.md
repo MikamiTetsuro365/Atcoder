@@ -137,38 +137,50 @@ int main(){
 ```
 
 # dfs
-**グラフや木を作って実行してくれい.[ABC070_D](https://atcoder.jp/contests/abc070/tasks/abc070_d) [ABC_067_D](https://atcoder.jp/contests/abc067/tasks/arc078_b)←忘れた頃にもう一度解け**
+**グラフや木を作って実行してくれい.[ABC070_D](https://atcoder.jp/contests/abc070/tasks/abc070_d) [ABC_067_D](https://atcoder.jp/contests/abc067/tasks/arc078_b)[ABC054_C](https://atcoder.jp/contests/abc054/tasks/abc054_c)←忘れた頃にもう一度解け**
 ```cpp
-void dfs(ll idx, ll from = -1){
- 
+#include "bits/stdc++.h"
+
+using namespace std;
+typedef long long int ll;
+typedef pair<ll, ll > pi;  
+
+void dfs(vector<vector<pi > > G, vector<bool > seen, ll idx, ll from = -1){
+    seen[idx] = true;
+
     for(ll i = 0; i < G[idx].size(); i++){
         //次の行き先は？
         ll to = G[idx][i].first;
-        //同じだったらもう処理しない
-        //頂点に戻ってきたら
-        //後戻りを許さない
-        if(to == from){
+        //探査済み
+        if(seen[to] == true){
             continue;
         }
-
-        //下は例です．この跡に色々処理を書いて幸せになりましょう
-        /*    
-        if(G[idx][i].second % 2 == 0){
-            ans[to] = ans[idx];
-        }else{
-            ans[to] = 1 - ans[idx];
-        }
-        */
  
-        dfs(to, idx);
- 
+        dfs(G, seen ,to , idx);
     }
 }
 
 int main(){
-    //グラフを作る
-    //dfs 実行
-    dfs(0);
+    ll N, M;
+    cin >> N >> M;
+    //初期化
+    vector<vector<pi > > G;
+    G.assign(N, vector<pi >());
+    vector<bool > seen(N, false);
+ 
+    //グラフ入力
+    for(ll i = 0; i < M; i++){
+        ll u, v, w;
+        w = 0;
+        cin >> u >> v;
+        u--;
+        v--;
+        //双方向に貼りましょうね
+        G[u].push_back(make_pair(v, w));
+        G[v].push_back(make_pair(u, w));
+    }
+
+    dfs(G ,seen ,0);
 }
 ```
 
