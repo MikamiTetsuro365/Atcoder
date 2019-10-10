@@ -297,10 +297,10 @@ void isPrime(ll N){
     for(ll i = 2; i < ceil(sqrt(N)) ; i++){
         //素数になりえないとき
         //cout << i << endl;
-        if(prime[i] == false) continue;
+        if(!prime[i]) continue;
         
         //Nまでのi(素数)の倍数を斑入り落とす
-        for(ll j = i * i; j < N; j += i){
+        for(ll j = i * i; j <= N; j += i){
             prime[j] = false;
         }    
     }
