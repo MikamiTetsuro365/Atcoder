@@ -238,6 +238,7 @@ for(ll left = 0; left < sum.size(); left += 2){
 
 # 気持ちの良いDP
 **VectorでDPテーブルを作ってしまうと膨大なメモリ空間にアクセスする必要があるのでTLE必須→Mapで頑張った[ARC073_B](https://atcoder.jp/contests/abc060/tasks/arc073_b)**
+**要素が2つあった[ABC054_D](https://atcoder.jp/contests/abc054/submissions/7929944)**
 
 # 整数と小数の判定
 **クソどうでも良いけど...ceil(切り上げ)とfloor(切り捨て)で同じだと整数(少数ではない)**
