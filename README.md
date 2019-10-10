@@ -12,6 +12,7 @@ typedef pair<ll, ll > pi;
 typedef pair<pair<ll, ll >, ll > pii;  
 vector<ll > vec;
 vector<vector<ll > > vec2;
+ll MOD = 1000000007;
 
 int main(){
 
