@@ -27,9 +27,10 @@ ll solv(vector<vector<ll > > in){
         }
 
         ll flip_num = 0;
-
+        //実際に踏んでみた
         for(ll row = 0; row < N - 1; row++){
             for(ll col = 0; col < M; col++){
+                //現在見てる場所
                 ll c = in[row][col];
                 for(ll posi = 0; posi < 4; posi++){
                     ll x = row + dx[posi];
