@@ -189,6 +189,67 @@ int main(){
 }
 ```
 
+# BFS
+**辺の重みが1の場合のみお手軽に最短経路を求めることができる**
+
+```cpp
+#include "bits/stdc++.h"
+
+using namespace std;
+typedef long long int ll;
+typedef pair<ll, ll > pi;  
+typedef pair<pair<ll, ll >, ll > pii;  
+vector<ll > vec;
+vector<vector<ll > > vec2;
+ll MOD = 1000000007;
+
+ll ans = INFINITY;
+ll N;
+
+vector<ll > bfs(vector<vector<ll > > G, ll start){
+    start;
+    //距離を初期化
+    vector<ll > dist(G.size(), -1);
+    queue<ll > que;
+
+    //始点start 初期化
+    dist[start] = 0;
+    que.push(start);
+
+    while(!que.empty()){
+        ll from = que.front();
+        que.pop();
+
+        for(ll i = 0; i < G[from].size(); i++){
+            ll to = G[from][i];
+            //すでに探査済み
+            if(dist[to] != -1) continue;
+
+            dist[to] = dist[from] + 1;
+            que.push(to);
+        }
+    }
+
+    return dist;
+
+}
+int main(){
+
+
+    cin >> N >> M;
+
+    vector<vector<ll > > G;
+    G.assign(N, vector<ll >());
+
+    for(ll i = 0; i < M; i++){
+        //入力
+    }
+
+    vector<ll > dist = bfs(G, 0);
+    cout << dist[N] << endl;
+}
+```
+
 # 橋
 **とてもわかり易い説明.特に6段目がよさみあふれる[ここ1](http://kagamiz.hatenablog.com/entry/2013/10/05/005213) [ここ２](https://ei1333.github.io/luzhiled/snippets/graph/lowlink.html) [ここ3](https://www.slideshare.net/chokudai/arc045)**
 
