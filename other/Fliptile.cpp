@@ -10,47 +10,84 @@ vector<vector<ll > > in;
 ll MOD = 1000000007;
 ll N, M;
 
-const ll dx[5] = {-1, 0, 0, 0, 1};
-const ll dy[5] = {0, -1, 0, 1, 0};
+const ll dx[5] = {0, 0, 0, -1};
+const ll dy[5] = {0, -1, 1, 0};
 
-ll get(vector<vector<ll > > flip, ll x, ll y){
-    ll c = in[x][y];
-    for(ll d = 0; d < 5; d++){
-        ll x2 = x + dx[d];
-        ll y2 = y + dy[d];
-        if(0 <= x2 && x2 < M && 0 <= y2 && y2 < N){
-            //反転できる場所
-            c += flip[x2][y2];
+ll solv(vector<vector<ll > > in){
+
+    ll m = 1000;
+    //一行目の踏み方 bit全探査
+    //vector<vector<ll > > a(N, vector<ll >(M, 0));
+    vector<vector<ll > > ans(N, vector<ll >(M, 0));
+    for(ll s = 0; s < (1<<M); s++){
+        vector<vector<ll > > flip(N, vector<ll >(M, 0));
+        for(ll j = 0; j < M; j++){
+            if( s >> j & 1) flip[0][M-j-1] = 1; 
+            //cout << flip[0][M-j-1];
+        }
+
+        ll flip_num = 0;
+
+        for(ll row = 0; row < N - 1; row++){
+            for(ll col = 0; col < M; col++){
+                ll c = in[row][col];
+                for(ll posi = 0; posi < 4; posi++){
+                    ll x = row + dx[posi];
+                    ll y = col + dy[posi];
+
+                    //範囲内を参照していれば
+                    if(0 <= x && x < M && 0 <= y && y < N){
+                        //XOR
+                        c ^= flip[x][y]; 
+                    }
+                }
+                flip[row + 1][col] = c;
+            }            
+        }
+
+        bool f = true;
+        for(ll col = 0; col < M; col++){
+            ll c = in[M-1][col];
+            for(ll posi = 0; posi < 4; posi++){
+                ll x = M-1 + dx[posi];
+                ll y = col + dy[posi];
+
+                if(0 <= x && x < M && 0 <= y && y < N){
+                    //XOR
+                    c ^= flip[x][y]; 
+                }               
+            }
+            if(c != 0){
+                f = false;
+                break;
+            }
+        }
+
+        if(f == true){
+            for(ll row = 0; row < N; row++){
+                for(ll col = 0; col < M; col++){
+                    flip_num += flip[row][col];
+                }        
+            }
+            if(flip_num < m){
+                m = flip_num;
+                for(ll row = 0; row < N; row++){
+                    for(ll col = 0; col < M; col++){
+                        ans[row][col] = flip[row][col];
+                    }        
+                }
+            }
         }
     }
-    return c % 2;
-}
 
-//塗りつぶし判定
-ll calc(vector<vector<ll > > flip){
-    for(ll row = 1; row < N; row++){
-        for(ll col = 0; col < M; col++){
-            if(get(flip, row - 1, col) != 0){
-                flip[row][col] = 1;
-            }
-        }        
-    }
+    for(ll i = 0; i < N; i++){
+        for(ll j = 0; j < M; j++){
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
+    } 
 
-    for(ll col = 0; col < M; col++){
-        if(get(flip, N - 1, col) != 0){
-            //解なし
-            return -1;
-        }     
-    }
 
-    //反転回数をカウント
-    ll ans = 0;
-    for(ll row = 1; row < N; row++){
-        for(ll col = 0; col < M; col++){
-            ans += flip[row][col];
-        }        
-    }
-    return ans;
 }
 
 int main(){
@@ -59,7 +96,8 @@ int main(){
 
     cin >> N >> M;
 
-    vector<vector<ll > > opt(N, vector<ll >(M, 0));
+    
+    
 
     in.assign(N, vector<ll >());
     for(ll row = 0; row < N; row++){
@@ -69,34 +107,10 @@ int main(){
         }        
     }
 
-    //1行目を試す 1行目のひっくり返し方から決まる解しかない
-    for(ll col = 0; col < (1<<M); col++){
-        vector<vector<ll > > flip(N, vector<ll >(M, 0));
-        for(ll j = 0; j < M; j++){
-            if( col >> j & 1) flip[0][M-j-1] = 1; 
-            //cout << flip[0][M-j-1];
-        }
-        //cout << endl;
-        ll num = calc(flip);
-        if(num >= 0 && (ans < 0 || ans > num)){
-            ans = num;
-            //コピー
-            for(ll i = 0; i < N; i++){
-                for(ll j = 0; j < M; j++){
-                    opt[i][j] = flip[i][j];
-                }        
-            }         
-        }
-        //cout << ans << endl;
-    }
+    solv(in);
 
 
-    for(ll i = 0; i < N; i++){
-        for(ll j = 0; j < M; j++){
-            cout << opt[i][j] << " ";
-        }
-        cout << endl;
-    } 
+
     
 
 }
