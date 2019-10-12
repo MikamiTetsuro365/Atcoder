@@ -320,7 +320,7 @@ int main(){
 ```
 
 # 素因数分解
-**素因数分解の気持ち**
+**素因数分解の気持ち[ABC052-C](https://atcoder.jp/contests/abc052/submissions/7931860)**
 ```cpp
 #include "bits/stdc++.h"
 
