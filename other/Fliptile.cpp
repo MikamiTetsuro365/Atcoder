@@ -15,7 +15,7 @@ const ll dy[5] = {0, -1, 1, 0};
 
 ll solv(vector<vector<ll > > in){
 
-    ll m = 1000;
+    ll mx = INFINITY;
     //一行目の踏み方 bit全探査
     //vector<vector<ll > > a(N, vector<ll >(M, 0));
     vector<vector<ll > > ans(N, vector<ll >(M, 0));
@@ -77,8 +77,8 @@ ll solv(vector<vector<ll > > in){
                 }        
             }
             //答え更新
-            if(flip_num < m){
-                m = flip_num;
+            if(flip_num < mx){
+                mx = flip_num;
                 for(ll row = 0; row < N; row++){
                     for(ll col = 0; col < M; col++){
                         ans[row][col] = flip[row][col];
@@ -103,9 +103,6 @@ int main(){
     ll ans = -1;
 
     cin >> N >> M;
-
-    
-    
 
     in.assign(N, vector<ll >());
     for(ll row = 0; row < N; row++){
