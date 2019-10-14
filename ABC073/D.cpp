@@ -105,6 +105,7 @@ int main() {
         //最短を求める
         ll t_path = 0;
         for(ll i = 1; i < R; i++){
+            //もしたどり着けない点があったら
             if(all_dist[perm[i-1]][perm[i]] == 1<<28) continue;
             t_path += all_dist[perm[i]][perm[i-1]];
         }
