@@ -27,26 +27,31 @@ ll solv(vector<vector<ll > > in){
         }
 
         ll flip_num = 0;
-        //実際に踏んでみた
+        //最後の行の手前まで
         for(ll row = 0; row < N - 1; row++){
             for(ll col = 0; col < M; col++){
                 //現在見てる場所
                 ll c = in[row][col];
+                //現在のマスト左右と上のマスをチェック(踏んでみる)
                 for(ll posi = 0; posi < 4; posi++){
                     ll x = row + dx[posi];
                     ll y = col + dy[posi];
 
                     //範囲内を参照していれば
                     if(0 <= x && x < M && 0 <= y && y < N){
-                        //XOR
+                        //周囲のマスが踏まれたとき，現在のマスがどう変化するか
+                        //もし１のままなら0にするため１つ下のマスで踏む(1)必要がある
                         c ^= flip[x][y]; 
                     }
                 }
+                //1つ下のマスの踏み方を更新
                 flip[row + 1][col] = c;
             }            
         }
 
         bool f = true;
+        //最後までの行の踏み方が上の処理でわかる
+        //踏んでみたとき最後のマスがどう変化するかたしかめる
         for(ll col = 0; col < M; col++){
             ll c = in[M-1][col];
             for(ll posi = 0; posi < 4; posi++){
@@ -58,6 +63,7 @@ ll solv(vector<vector<ll > > in){
                     c ^= flip[x][y]; 
                 }               
             }
+            //最後の行がすべて０になっていなければ失敗
             if(c != 0){
                 f = false;
                 break;
@@ -70,6 +76,7 @@ ll solv(vector<vector<ll > > in){
                     flip_num += flip[row][col];
                 }        
             }
+            //答え更新
             if(flip_num < m){
                 m = flip_num;
                 for(ll row = 0; row < N; row++){
