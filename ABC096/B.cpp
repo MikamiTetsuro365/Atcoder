@@ -8,9 +8,6 @@ vector<ll > vec;
 vector<vector<ll > > vec2;
 ll MOD = 1000000007;
 
-ll dx[2] = {-1, 1};
-ll dy[2] = {-1, 1};
-
 int main(){
 
     vector<ll > ABC(3, 0);
