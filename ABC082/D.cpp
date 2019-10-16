@@ -1,5 +1,5 @@
 #include "bits/stdc++.h"
-
+#include <unordered_set>
 using namespace std;
 typedef long long int ll;
 typedef pair<ll, ll > pi;  
@@ -47,46 +47,45 @@ int main(){
     //xとy軸の移動しうる点を交互に求めていく(Tの数だけXまたはY軸に沿って移動するかが変化する)
 
 
-    vector<map<ll , ll> >x_dp(vec.size()+10);
-    vector<map<ll , ll> >y_dp(vec.size()+10);
-    x_dp[0][0] = 1;
-    y_dp[0][0] = 1;
-    y_dp[1][0] = 1;
+    vector<unordered_set<ll > >x_dp(vec.size()+10);
+    vector<unordered_set<ll > >y_dp(vec.size()+10);
+    x_dp[0].insert(0);
+    y_dp[0].insert(0);
+    y_dp[1].insert(0);
 
     ll i = 0;
     
     while(i < vec.size()){
         
         if(i == 0){
-            x_dp[1][vec[i]] = 1;
-            x_dp[2][vec[i]] = 1;
-            //cout << x_dp[1][vec[i]] << endl;
+            x_dp[1].insert(vec[i]);
+            x_dp[2].insert(vec[i]);
         }else if(i != 0 && i % 2 == 1){
             //cout << i << " " <<  vec[i] << endl;
-            auto begin = y_dp[i].begin(), end = y_dp[i].end();
-            for (auto iter = begin; iter != end; iter++) { 
-                y_dp[i + 1][iter->first + vec[i]] = 1; 
-                y_dp[i + 1][iter->first - vec[i]] = 1; 
-                y_dp[i + 2][iter->first + vec[i]] = 1; 
-                y_dp[i + 2][iter->first - vec[i]] = 1; 
+            for(auto y : y_dp[i]){
+                y_dp[i + 1].insert(y + vec[i]); 
+                y_dp[i + 1].insert(y - vec[i]); 
+                //次の次は更新されないので
+                y_dp[i + 2].insert(y + vec[i]); 
+                y_dp[i + 2].insert(y - vec[i]); 
             }      
         }else if(i != 0 && i % 2 == 0){
             //cout << i << " " << vec[i] << endl;
-            auto begin = x_dp[i].begin(), end = x_dp[i].end();
-            for (auto iter = begin; iter != end; iter++) {
+            for(auto x : x_dp[i]){
                 //cout << iter->first + vec[i] << " " << iter->first - vec[i] << endl;
-                x_dp[i + 1][iter->first + vec[i]] = 1; 
-                x_dp[i + 1][iter->first - vec[i]] = 1; 
-                x_dp[i + 2][iter->first + vec[i]] = 1; 
-                x_dp[i + 2][iter->first - vec[i]] = 1; 
+                x_dp[i + 1].insert(x + vec[i]); 
+                x_dp[i + 1].insert(x - vec[i]); 
+                //次の次は更新されないので
+                x_dp[i + 2].insert(x + vec[i]); 
+                x_dp[i + 2].insert(x - vec[i]); 
             }    
         }
 
         i++;
     }
 
-
-    if(x_dp[vec.size()][x] == 1 && y_dp[vec.size()][y] == 1 ){
+    ll posi = vec.size();
+    if(x_dp[posi].find(x) != x_dp[posi].end() && y_dp[posi].find(y) != y_dp[posi].end() ){
         cout << "Yes" << endl;
     }else{
         cout << "No" << endl;
