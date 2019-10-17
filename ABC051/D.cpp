@@ -49,7 +49,8 @@ vector<ll > get_path(ll start, ll end){
         cout << i << endl;
         ans.push_back(i);
     }
-     ans.push_back(end);
+    cout << end << endl;
+    ans.push_back(end);
     return ans;
 }
 
@@ -79,29 +80,12 @@ int main(){
         ll u, v, w;
         cin >> u >> v >> w;
         //適宜揃える
-        //u--;
-        //v--;
+        u--;
+        v--;
         //有向か無向かでコメントアウト　多重辺も防止
         G[u][v] = min(G[u][v], w);
-        //G[v][u] = min(G[v][u], w);
+        G[v][u] = min(G[v][u], w);
     }
-
-    //初期化
-    /*
-    for(ll i = 0; i < N; i++){
-        for(ll j = 0; j < N; j++){
-            if(i == j){
-                //自分から自分へ
-                path[i].push_back(j);
-            }else if(G[i][j] != INF){
-                path[i].push_back(j);
-            }else{
-                path[i].push_back(-1);
-            }
-            
-        }       
-    }
-    */
 
     //実行
     if(warshall() == false){
@@ -109,6 +93,7 @@ int main(){
     }
 
     //確認
+    
     for(ll i = 0; i < N; i++){
         for(ll j = 0; j < N; j++){
             if(G[i][j] == INF){ 
@@ -120,7 +105,26 @@ int main(){
         }       
         cout << endl;
     }
+    
+    /*
+    for(ll i = 0; i < N; i++){
+        for(ll j = 0; j < N; j++){
+            G[i][path[i][j]] = -1;
+            G[path[i][j]][i] = -1;
+        }       
+    }
 
-    get_path(2, 0);
-    get_path(0, 3);
+    //確認
+    ll ans = 0;    
+    for(ll i = 0; i < N; i++){
+        for(ll j = 0; j < N; j++){
+            cout <<  ( j ? " " : "" ) <<  G[i][j]; 
+            if(G[i][j] != -1) ans++;
+        }
+        cout << endl;
+    }
+    cout << ans << endl;
+    */
+    //get_path(0, 2);
+
 }
