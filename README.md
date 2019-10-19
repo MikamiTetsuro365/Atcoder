@@ -554,7 +554,7 @@ int main() {
 # ワーシャルフロイド法
 **あらかじめ全ての頂点間の最短距離を求めておく 計算量O(V^3) 負の辺があってもOK**
 
-**下のコードは制限が厳しいとき用**
+**下のコードは制限が厳しいとき用，多重辺，自己ループ，距離が超巨大になる，負の辺がある，負の辺の閉路がある**
 ```cpp
 #include "bits/stdc++.h"
 
@@ -664,6 +664,24 @@ int main(){
 
     get_path(2, 0);
     get_path(0, 3);
+}
+```
+
+**制限が厳しくないとき用**
+```cpp
+vector<vector<ll > > warshall(vector<vector<ll > > GRAPH){
+    //中継点に関して
+    for(ll reley = 0; reley < N; reley++){
+        for(ll from = 0; from < N; from++){
+            for(ll to = 0; to < N; to++){
+                //中継した方がコストがかからないか否か
+                //小さい順からコストが自明に決まっていく
+                GRAPH[from][to] = min(GRAPH[from][to], GRAPH[from][reley] + GRAPH[reley][to]);
+            }
+        }
+    }
+
+    return GRAPH;
 }
 ```
 
