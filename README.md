@@ -556,6 +556,9 @@ int main() {
 **あらかじめ全ての頂点間の最短距離を求めておく 計算量O(V^3) 負の辺があってもOK**
 
 **下のコードは制限が厳しいとき用，多重辺，自己ループ，距離が超巨大になる，負の辺がある，負の辺の閉路がある**
+
+**[ABC143_E](https://atcoder.jp/contests/abc143/submissions/8052276)**
+
 ```cpp
 #include "bits/stdc++.h"
 
