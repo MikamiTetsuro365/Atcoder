@@ -7,7 +7,7 @@ typedef pair<pair<ll, ll >, ll > pii;
 vector<ll > vec;
 vector<vector<ll > > vec2;
 ll MOD = 1000000007;
-ll INF = 11415141919;
+ll INF = 11451419194545;
 ll N, M; 
 
 vector<vector<ll > > warshall(vector<vector<ll > > GRAPH){
