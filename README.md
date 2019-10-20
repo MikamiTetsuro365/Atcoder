@@ -689,6 +689,15 @@ vector<vector<ll > > warshall(vector<vector<ll > > GRAPH){
 }
 ```
 
+# 二分探査
+**完全にメモ**
+
+## lower_bound()
+**指定した値__以上__**
+```cpp
+
+```
+
 # あばばば
 **概要**
 ```cpp
