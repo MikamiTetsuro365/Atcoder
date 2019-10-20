@@ -559,6 +559,8 @@ int main() {
 
 **[ABC143_E](https://atcoder.jp/contests/abc143/submissions/8052276)**
 
+**[ABC061_D](https://atcoder.jp/contests/abc061/submissions/8058997)遠回りになるような経路を選んでいく**
+
 ```cpp
 #include "bits/stdc++.h"
 
@@ -693,7 +695,12 @@ vector<vector<ll > > warshall(vector<vector<ll > > GRAPH){
 **完全にメモ**
 
 ## lower_bound()
-**指定した値__以上__**
+**指定した値__以上__の要素の内，最左の位置を返す**
+```cpp
+
+```
+## upper_bound()
+**指定した値__超過__の要素の内，最左の位置を返す**
 ```cpp
 
 ```
