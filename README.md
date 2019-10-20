@@ -704,7 +704,7 @@ vector<vector<ll > > warshall(vector<vector<ll > > GRAPH){
 #include "bits/stdc++.h"
 using namespace std;
 typedef long long int ll;
-
+//本番は問題に応じてバグらせないよう番兵を入れる
 int main(){
     ll N, K; cin >> N >> K;
     vector<ll > vec(N, 0);
@@ -713,13 +713,14 @@ int main(){
     }
     sort(vec.begin(), vec.end());
     //インデックス
-    ll l_idx = lower_bound(vec.begin(), vec.end(), K) - vec.begin();
-    ll u_idx = upper_bound(vec.begin(), vec.end(), K) - vec.begin();
-
-    //入力
-    //5 4
-    //1 2 3 4 5
-    // l_idx = 3, u_idx = 4
+    //以上(の最大)
+    ll ijo = lower_bound(vec.begin(), vec.end(), K) - vec.begin();
+    //未満(の最大)
+    ll miman = ijo - 1;
+    //超過(の最小))
+    ll choka = upper_bound(vec.begin(), vec.end(), K) - vec.begin();
+    //以下（の最大）
+    ll ika = choka - 1;
 }
 ```
 
