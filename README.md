@@ -602,7 +602,6 @@ bool bellman(ll start){
     */
 
    return true;
-
 }
 
 int main() {
