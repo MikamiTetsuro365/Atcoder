@@ -700,6 +700,8 @@ vector<vector<ll > > warshall(vector<vector<ll > > GRAPH){
 ## upper_bound()
 **指定した値__超過__の要素の内，最左の位置を返す**
 
+**先頭イテレータや末尾イテレータを引くことで任意の区間の個数を求められる**
+
 ```cpp
 #include "bits/stdc++.h"
 using namespace std;
