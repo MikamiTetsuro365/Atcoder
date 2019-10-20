@@ -555,11 +555,11 @@ int main() {
 # ワーシャルフロイド法
 **あらかじめ全ての頂点間の最短距離を求めておく 計算量O(V^3) 負の辺があってもOK**
 
-**下のコードは制限が厳しいとき用，多重辺，自己ループ，距離が超巨大になる，負の辺がある，負の辺の閉路がある**
-
 **[ABC143_E](https://atcoder.jp/contests/abc143/submissions/8052276)**
 
-**[ABC061_D](https://atcoder.jp/contests/abc061/submissions/8058997)遠回りになるような経路を選んでいく**
+**[ABC061_D](https://atcoder.jp/contests/abc061/submissions/8058997)遠回りになるような経路を選んでいく.普段のminをmaxに，INFはMIN_INFに**
+
+**下のコードは制限が厳しいとき用，多重辺，自己ループ，距離が超巨大になる，負の辺がある，負の辺の閉路がある**
 
 ```cpp
 #include "bits/stdc++.h"
@@ -696,14 +696,33 @@ vector<vector<ll > > warshall(vector<vector<ll > > GRAPH){
 
 ## lower_bound()
 **指定した値__以上__の要素の内，最左の位置を返す**
-```cpp
 
-```
 ## upper_bound()
 **指定した値__超過__の要素の内，最左の位置を返す**
-```cpp
 
+```cpp
+#include "bits/stdc++.h"
+using namespace std;
+typedef long long int ll;
+
+int main(){
+    ll N, K; cin >> N >> K;
+    vector<ll > vec(N, 0);
+    for(ll i = 0; i < N; i++){
+        cin >> vec[i];
+    }
+    sort(vec.begin(), vec.end());
+    //インデックス
+    ll l_idx = lower_bound(vec.begin(), vec.end(), K) - vec.begin();
+    ll u_idx = upper_bound(vec.begin(), vec.end(), K) - vec.begin();
+}
 ```
+
+'入力'
+'5 4'
+'1 2 3 4 5'
+
+
 
 # あばばば
 **概要**
