@@ -715,13 +715,13 @@ int main(){
     //インデックス
     ll l_idx = lower_bound(vec.begin(), vec.end(), K) - vec.begin();
     ll u_idx = upper_bound(vec.begin(), vec.end(), K) - vec.begin();
+
+    //入力
+    //5 4
+    //1 2 3 4 5
+    // l_idx = 3, u_idx = 4
 }
 ```
-
-'入力'
-'5 4'
-'1 2 3 4 5'
-
 
 
 # あばばば
