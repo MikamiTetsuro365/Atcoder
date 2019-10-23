@@ -16,36 +16,45 @@ int main(){
     map<ll, ll > mp;
     for(ll i = 0; i < N; i++){
         ll t = 0; cin >> t;
+        //重複排除
         if(mp[t] != 0) continue;
-
+        
         mp[t]++;
         vec.push_back(t);
-
     }
     sort(vec.begin(), vec.end());
-    cout << vec.size() << endl;
+    //cout << " " << endl;
     //圧縮
     vector<ll > t_vec;
-    ll cn = 0;
-    for(ll i = 0; i < vec.size();){
-        if(cn > 10) break;
-
-        ll j = i;
-
-        while(j < vec.size() && vec[j] == vec[j+1]-1){
-            cout << j << endl;
-            j++;
+    ll cn = 1;
+    //準備
+    ll sum  = 0;
+    //人が連続してきたときと人と人の隙間を求める
+    priority_queue<ll > que;
+    for(ll i = 1; i < vec.size();i++){
+        if(vec[i-1] != vec[i]-1){
+            //cout << vec[i] << endl;
+            ll s = vec[i]-vec[i-1]-1;
+            t_vec.push_back(cn);
+            t_vec.push_back(s);
+            //もしストーブを全期間でつけたときのコスト
+            sum += cn;
+            sum += s;
+            que.push(s);
+            cn = 1;
+        }else{
+            cn++;
         }
-        //cout << j-i << " " << vec[j]-vec[j-1] << endl;
-        cout << j << endl;
-        t_vec.push_back(j-i);
-        t_vec.push_back(vec[j]-vec[j-1]);
-        i=j + 1;
-        cn++;
+    }
+    t_vec.push_back(cn);
+    sum += cn;
+
+    while(M-1 > 0 && !que.empty()){
+        sum -= que.top();
+        que.pop();
+        M--;
     }
 
-
-
-
+    cout << sum << endl;
 
 }
