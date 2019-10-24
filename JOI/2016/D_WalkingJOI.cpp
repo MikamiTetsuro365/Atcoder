@@ -16,8 +16,10 @@ ll ijo(set<ll > s, ll t){
 ll ika(set<ll > s, ll t){
     auto it = s.lower_bound(t);
     if(it == s.end()){
+        //検索しうる上限に達していたら1つ下のインデックスを参照する
         it--;
     }else if(*it > t){
+        //検索したtより数値が上なら1つ下のインデックスを参照する
         it--;
     }
     return *it;
