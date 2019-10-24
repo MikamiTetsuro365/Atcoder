@@ -44,6 +44,15 @@ int main(){
             j++;
         }
 
+        if(h[j-1].second == 2 && i != 0){
+            memo.push_back(h[i].first);
+        }
+
+        if(h[j-1].second == 1 && i != h.size()-1){
+            memo.push_back(h[j-1].first);
+        }
+
+        /*
         if(h[j-1].second == 2){
             if(i == 0) meeting.insert(-INF); //西へ突き進んでしまい誰とも出会わない
             else memo.push_back(h[i].first);
@@ -52,6 +61,7 @@ int main(){
             if(i == h.size()-1) meeting.insert(INF);//東へ突き進んでしまい誰とも出会わない
             else memo.push_back(h[j-1].first);
         }
+        */
         i = j;
     }
     //東からきた人と西から来た人が合う場所
