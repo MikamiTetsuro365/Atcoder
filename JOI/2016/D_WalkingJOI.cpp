@@ -7,8 +7,9 @@ typedef pair<pair<ll, ll >, ll > pii;
 vector<ll > vec;
 vector<vector<ll > > vec2;
 ll MOD = 1000000007;
-ll INF = 1145141919;
+//ll INF = 1e18 + 191919191919;
 ll N, M, L;
+ll mx, mn;
 
 ll ijo(set<ll > s, ll t){
     return *s.lower_bound(t);
@@ -31,6 +32,9 @@ int main(){
     //前処理
     for(ll i = 0; i < N; i++){
         ll p, l; cin >> p >> l;
+        if(l == 2){
+            l = -1;
+        }
         h.push_back(make_pair(p, l));
     }
     //1のとき東向き（右） 2のとき西向き(左)
@@ -44,16 +48,14 @@ int main(){
             j++;
         }
 
-        if(h[j-1].second == 2 && i != 0){
+        if(h[j-1].second == -1 && i != 0){
             memo.push_back(h[i].first);
-        }
-
-        if(h[j-1].second == 1 && i != h.size()-1){
+        }else if(h[j-1].second == 1 && i != h.size()-1){
             memo.push_back(h[j-1].first);
         }
 
         /*
-        if(h[j-1].second == 2){
+        if(h[j-1].second == -1){
             if(i == 0) meeting.insert(-INF); //西へ突き進んでしまい誰とも出会わない
             else memo.push_back(h[i].first);
         }
@@ -64,38 +66,38 @@ int main(){
         */
         i = j;
     }
+
     //東からきた人と西から来た人が合う場所
     for(ll i = 0; i < memo.size(); i+=2){
         meeting.insert((memo[i] + memo[i + 1]) / 2);
-        //cout << (memo[i] + memo[i + 1]) / 2 << endl;
+        //cout << (memo[i] + (memo[i + 1] - memo[i])) / 2 << endl;
     }
+    //meeting.insert(-INF);
+    //meeting.insert(INF);
+
+    mx = *(meeting.rbegin());
+    mn = *(meeting.begin());
 
     //検索
     vector<ll > ans;
     for(ll i = 0; i < L; i++){
         ll search; cin >> search; search--;
-        ll t = 0;
-        if(h[search].second == 1){
-            //t = h[search].first + M;
-            t = h[search].first;
-            ll num = ijo(meeting, t);
-            
-            if(num <= t + M){
-                ans.push_back(num);
-            }else{
-                ans.push_back(t + M);
-            }
+        
+        ll now = h[search].first;
+        ll muki = h[search].second;
+        ll to = now + M * muki;
 
-        }else{
-            t = h[search].first;
-            ll num = ika(meeting, t);
+        if(muki == 1 && mx >= now){            
+            ll num = ijo(meeting, now);
+            to = min(num, to);
+            //ans.push_back(min(num, to));
 
-            if(num >= t - M){
-                ans.push_back(num);
-            }else{
-                ans.push_back(t - M);
-            }
+        }else if(muki == -1 && mn <= now){
+            ll num = ika(meeting, now);
+            to = max(num, to);
+            //ans.push_back(max(num, to));
         }
+        ans.push_back(to);
     }
 
     for(ll i = 0; i < ans.size(); i++){
