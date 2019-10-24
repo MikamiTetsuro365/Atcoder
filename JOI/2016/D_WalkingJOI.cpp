@@ -7,7 +7,6 @@ typedef pair<pair<ll, ll >, ll > pii;
 vector<ll > vec;
 vector<vector<ll > > vec2;
 ll MOD = 1000000007;
-//ll INF = 1e18 + 191919191919;
 ll N, M, L;
 ll mx, mn;
 
@@ -48,33 +47,23 @@ int main(){
             j++;
         }
 
+        //↑でループの限界を超えたらjはプラス1されているのを忘れずに!
         if(h[j-1].second == -1 && i != 0){
             memo.push_back(h[i].first);
-        }else if(h[j-1].second == 1 && i != h.size()-1){
+        }else if(h[j-1].second == 1 && j - 1 != h.size()-1){
             memo.push_back(h[j-1].first);
         }
 
-        /*
-        if(h[j-1].second == -1){
-            if(i == 0) meeting.insert(-INF); //西へ突き進んでしまい誰とも出会わない
-            else memo.push_back(h[i].first);
-        }
-        if(h[j-1].second == 1){
-            if(i == h.size()-1) meeting.insert(INF);//東へ突き進んでしまい誰とも出会わない
-            else memo.push_back(h[j-1].first);
-        }
-        */
         i = j;
     }
 
-    //東からきた人と西から来た人が合う場所
+    //東からきた人と西から来た人が合う場所の計算
     for(ll i = 0; i < memo.size(); i+=2){
         meeting.insert((memo[i] + memo[i + 1]) / 2);
-        //cout << (memo[i] + (memo[i + 1] - memo[i])) / 2 << endl;
+        //cout << (memo[i] + memo[i + 1]) / 2 << " ";
     }
-    //meeting.insert(-INF);
-    //meeting.insert(INF);
 
+    //上限と下限
     mx = *(meeting.rbegin());
     mn = *(meeting.begin());
 
@@ -83,10 +72,12 @@ int main(){
     for(ll i = 0; i < L; i++){
         ll search; cin >> search; search--;
         
+        //現在地と次の考えうる移動先
         ll now = h[search].first;
         ll muki = h[search].second;
         ll to = now + M * muki;
 
+        //上限と下限外なら誰とも出会うことはないので移動し続けられる
         if(muki == 1 && mx >= now){            
             ll num = ijo(meeting, now);
             to = min(num, to);
