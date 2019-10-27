@@ -32,8 +32,11 @@ int main(){
     ll mn_ans = INF;
     do{
         ll t_ans = 0;
-        if(num[0] == 19 || num[0] == -19 || num[N-1] == 19 || num[N-1] == -19)
+        if(num[0] == 19 || num[0] == -19 || num[N-1] == 19 || num[N-1] == -19) continue;
+        
+        
         for(ll i = 0; i < num.size(); i++){
+            
             cout << num[i];
         }
         cout << endl;
