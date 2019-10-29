@@ -13,6 +13,7 @@ ll INF = 9223372036854775807;
 bool check(ll R, ll B, ll x, ll y, ll mid){
     //作ろうとしている個数=mid
     ll sum = (R - mid) / (x - 1) + (B - mid) / (y - 1); 
+    //個数がおかしくなるのでマイナスになったらやめる
     if(R - mid < 0 || B - mid < 0 ) return false;
     //cout << sum << endl;
     if(sum >= mid) return true;
