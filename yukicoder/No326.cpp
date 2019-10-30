@@ -46,7 +46,7 @@ int main(){
     }
     */
     
-
+    //バブルソート
     for(ll i = 0; i < N - 1; i++){
         for(ll j = N - 1; j > i; j--){
             if(d_d[j] < d_d[j-1]){
