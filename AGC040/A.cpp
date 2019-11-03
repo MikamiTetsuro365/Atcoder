@@ -6,11 +6,9 @@ vector<vector<ll > > vec2;
 
 ll sum(ll a, ll b){
     ll ans = 0;
-
     for(ll i = a; i <= b; i++){
         ans+=i;
     }
-
     return ans;
 }
 
@@ -42,22 +40,13 @@ int main(){
         vec.push_back(1);
     }
     for(ll i = 1 + idx; i < vec.size(); i+=2){
-        //cout << vec[i] << " " << vec[i-1]  << endl;
         if(vec[i] >= vec[i-1]){
-            ll e1 = vec[i];
             ans += sum(0, vec[i-1]-1);            
-            ans += sum(0 , e1);
-            //cout << sum(s1, e1) <<endl;
-            //cout << sum(0, vec[i] - 1) << endl;
+            ans += sum(0 , vec[i]);
         }else{
             ans += sum(0, vec[i-1]);
-            ll e2 = vec[i] - 1;
-            ans += sum(0, e2);
-            //cout << sum(0, vec[i-1]) + sum(0, e1) <<endl;
+            ans += sum(0, vec[i] - 1);
         }
-        //cout << ans << endl;
     }
-
-
     cout << ans << endl;
 }
