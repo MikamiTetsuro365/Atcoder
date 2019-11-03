@@ -31,48 +31,33 @@ int main(){
     }
 
     ll ans = 0;
+    ll idx = 0;
 
-    if(s[0] == '<'){
-        if(vec.size() % 2 != 0){
-            vec.push_back(1);
-        }
-        for(ll i = 1; i < vec.size(); i+=2){
-            //cout << vec[i] << " " << vec[i-1]  << endl;
-            if(vec[i] >= vec[i-1]){
-                ll e1 = vec[i];
-                ans += sum(0, vec[i-1]-1);            
-                ans += sum(0 , e1);
-                //cout << sum(s1, e1) <<endl;
-                //cout << sum(0, vec[i] - 1) << endl;
-            }else{
-                ans += sum(0, vec[i-1]);
-                ll e2 = vec[i] - 1;
-                ans += sum(0, e2);
-                //cout << sum(0, vec[i-1]) + sum(0, e1) <<endl;
-            }
-            //cout << ans << endl;
-        }
-    }else{
+    if(s[0] == '>'){
         ans += sum(0, vec[0]);
-        if((vec.size()-1) % 2 != 0){
-            vec.push_back(1);
-        }
-        for(ll i = 2; i < vec.size(); i+=2){
-            if(vec[i] >= vec[i-1]){
-                ll e1 = vec[i];
-                //cout << s1 << " " << e1 << endl;
-                ans += sum(0, vec[i-1]-1);            
-                ans += sum(0 , e1);
-                //cout << sum(s1, e1) + sum(0, vec[i] - 1) <<endl;
-            }else{
-                ans += sum(0, vec[i-1]);
-                ll e2 = vec[i] - 1;
-                ans += sum(0, e2);
-                //cout << sum(0, vec[i-1]) + sum(0, e1) <<endl;
-            }
-            //cout << ans << endl;
-        }
+        idx = 1;
     }
+
+    if((vec.size() + idx) % 2 != 0){
+        vec.push_back(1);
+    }
+    for(ll i = 1 + idx; i < vec.size(); i+=2){
+        //cout << vec[i] << " " << vec[i-1]  << endl;
+        if(vec[i] >= vec[i-1]){
+            ll e1 = vec[i];
+            ans += sum(0, vec[i-1]-1);            
+            ans += sum(0 , e1);
+            //cout << sum(s1, e1) <<endl;
+            //cout << sum(0, vec[i] - 1) << endl;
+        }else{
+            ans += sum(0, vec[i-1]);
+            ll e2 = vec[i] - 1;
+            ans += sum(0, e2);
+            //cout << sum(0, vec[i-1]) + sum(0, e1) <<endl;
+        }
+        //cout << ans << endl;
+    }
+
 
     cout << ans << endl;
 }
