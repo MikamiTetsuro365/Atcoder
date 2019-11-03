@@ -16,7 +16,7 @@ int main(){
 
     string s;
     cin >> s;
-    
+    //圧縮
     for(ll i = 0; i < s.length();){
         ll j = i;
         //一緒の間ループを回し続けて，切れ目を探す
@@ -30,12 +30,12 @@ int main(){
 
     ll ans = 0;
     ll idx = 0;
-
+    //1つ飛ばす
     if(s[0] == '>'){
         ans += sum(0, vec[0]);
         idx = 1;
     }
-
+    //番兵
     if((vec.size() + idx) % 2 != 0){
         vec.push_back(1);
     }
