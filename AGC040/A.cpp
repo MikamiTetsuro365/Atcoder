@@ -2,15 +2,6 @@
 using namespace std;
 typedef unsigned long long ll;
 vector<ll > vec;
-vector<vector<ll > > vec2;
-
-ll sum(ll a, ll b){
-    ll ans = 0;
-    for(ll i = a; i <= b; i++){
-        ans+=i;
-    }
-    return ans;
-}
 
 int main(){
 
@@ -32,7 +23,7 @@ int main(){
     ll idx = 0;
     //1つ飛ばす
     if(s[0] == '>'){
-        ans += sum(0, vec[0]);
+        ans +=  (vec[0] * (vec[0]+1)) / 2;
         idx = 1;
     }
     //番兵
@@ -41,11 +32,11 @@ int main(){
     }
     for(ll i = 1 + idx; i < vec.size(); i+=2){
         if(vec[i] >= vec[i-1]){
-            ans += sum(0, vec[i-1]-1);            
-            ans += sum(0 , vec[i]);
+            ans +=  ((vec[i-1]-1) * vec[i-1]) / 2;
+            ans +=  (vec[i] * (vec[i] + 1)) / 2;
         }else{
-            ans += sum(0, vec[i-1]);
-            ans += sum(0, vec[i] - 1);
+            ans +=  (vec[i-1]* (vec[i-1]+1)) / 2;
+            ans +=  ((vec[i]-1) * vec[i]) / 2;
         }
     }
     cout << ans << endl;
