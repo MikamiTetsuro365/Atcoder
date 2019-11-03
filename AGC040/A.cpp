@@ -33,10 +33,10 @@ int main(){
     for(ll i = 1 + idx; i < vec.size(); i+=2){
         if(vec[i] >= vec[i-1]){
             ans +=  ((vec[i-1]-1) * vec[i-1]) / 2;
-            ans +=  (vec[i] * (vec[i] + 1)) / 2;
+            ans +=  (vec[i] * (vec[i] + 1))   / 2;
         }else{
-            ans +=  (vec[i-1]* (vec[i-1]+1)) / 2;
-            ans +=  ((vec[i]-1) * vec[i]) / 2;
+            ans +=  (vec[i-1]* (vec[i-1]+1))  / 2;
+            ans +=  ((vec[i]-1) * vec[i])     / 2;
         }
     }
     cout << ans << endl;
