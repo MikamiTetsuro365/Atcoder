@@ -193,6 +193,8 @@ int main(){
 # BFS
 **辺の重みが1の場合のみお手軽に最短経路を求めることができる**
 
+**[ここ](https://atcoder.jp/contests/joi2011yo/submissions/8100295)**
+
 ```cpp
 #include "bits/stdc++.h"
 
@@ -456,6 +458,9 @@ int main(){
 
 # ダイクストラ法
 **ある頂点から他の頂点までの最短経路を求める．ただし辺の長さ(重み)は正に限る．計算量はヒープを使ってO((V+E)logV)**
+
+**[二分探査＋ダイクストラ](https://atcoder.jp/contests/abc020/submissions/8228615)**
+
 ```cpp
 #include "bits/stdc++.h"
  
