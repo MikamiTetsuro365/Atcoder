@@ -42,6 +42,7 @@ int main(){
     auto begin = mp.begin(), end = mp.end();
     for (auto iter = begin; iter != end; iter++){
         //辺の伸ばし方に矛盾がある時
+        //距離Dの次がD+1出ない時
         if(iter -> first != cn){
             cout << 0 << endl;
             return 0;
