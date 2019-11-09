@@ -28,6 +28,7 @@ int main(){
     map<ll, ll> mp;
     for(ll i = 0; i < N; i++){
         ll t = 0; cin >> t;
+        //始点がループしているので木ではない
         if(i == 0 && t > 0){
             cout << 0 << endl;
             return 0;
@@ -39,14 +40,14 @@ int main(){
     ll ans = 1;
     ll tmp = 1;
     auto begin = mp.begin(), end = mp.end();
-    for (auto iter = begin; iter != end; iter++) {
+    for (auto iter = begin; iter != end; iter++){
+        //辺の伸ばし方に矛盾がある時
         if(iter -> first != cn){
             cout << 0 << endl;
             return 0;
         }
         cn++;
         ans = ans * mod_pow(tmp, iter->second) % MOD;
-        //cout << iter->second << endl;
         tmp = iter->second;
     }
 
