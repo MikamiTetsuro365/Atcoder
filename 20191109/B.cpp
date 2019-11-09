@@ -13,10 +13,10 @@ ll mod_pow(ll a, ll n){
     if(n == 0) return 1;
     //べき数nが奇数, aを前にだして, a^n-1の気持ちに
     if(n % 2 == 1){
-        return a * fast_pow(a, n - 1) % MOD;
+        return a * mod_pow(a, n - 1) % MOD;
     }else{
         //べき数nが偶数のとき，べき数を半分にして, aをまとめる. べき数を半分にする
-        return fast_pow(a * a % MOD, n / 2) % MOD;
+        return mod_pow(a * a % MOD, n / 2) % MOD;
     }
 }
 
@@ -45,7 +45,7 @@ int main(){
             return 0;
         }
         cn++;
-        ans = ans * fast_pow(tmp, iter->second) % MOD;
+        ans = ans * mod_pow(tmp, iter->second) % MOD;
         //cout << iter->second << endl;
         tmp = iter->second;
     }
