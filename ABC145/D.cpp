@@ -32,6 +32,7 @@ int main(){
             ll t_y = que.front().first.second;
             ll t_c = que.front().second;
             que.pop();
+            //枝刈りしたい...
             if(t_x + 1 <= X && t_y + 2 <= Y){
                 dp[make_pair(t_x + 1, t_y + 2)] = (t_c + 1) % MOD;
                 tmp[make_pair(t_x + 1, t_y + 2)] += dp[make_pair(t_x + 1, t_y + 2)] % MOD; 
