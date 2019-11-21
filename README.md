@@ -807,6 +807,26 @@ int main(){
 }
 ```
 
+## 最小値を求める
+**check関数にmidを満たすか確認する処理をかく**
+```cpp
+    //最小の値なのでleftは当てはまらない数, rigthはずっと条件に当てはまる数（最悪の答え）
+    ll left = -1; ll right = 100
+ 
+    //最小値を求める
+    //rightを寄せていく
+    while(left + 1 < right){
+        ll mid = (left + right) / 2;
+        if(check(mid)){
+            right = mid;
+        }else{
+            left = mid;
+        }
+    }
+    //最小値
+    cout << right << endl;
+```
+
 
 # あばばば
 **概要**
