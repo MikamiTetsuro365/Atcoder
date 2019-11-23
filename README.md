@@ -828,7 +828,7 @@ int main(){
 ```
 
 # 逆元
-**ある数aにある数xをかけると1になる．この時，ある数xを「逆元」と言う．割り算を掛け算で表すために逆元を使う．つまり，割る数×割られる数の逆元．**
+**ある数aにある数xをかけると1になる．この時，ある数xを「逆元」と言う．割り算を掛け算で表すために逆元を使う．つまり，割れる数数×割る数の逆元．**
 
 ## mod Pにおける逆元
 
@@ -841,7 +841,42 @@ int main(){
 **これはP×k+a×x=1と解くことに他ならない．よって，拡張ユークリッドの互除法でkとxを同時に求める．**
 
 ```cpp
+#include "bits/stdc++.h"
+using namespace std;
+typedef long long int ll;
 
+ll mod = 1000000007;
+ll modinv(ll a, ll m = mod){
+    ll b = m; ll u = 1; ll v = 0;
+    //
+    while(b){
+        // a / b = t * b + a % b
+        ll t = a / b;
+        a -= t * b; 
+        swap(a, b);
+        u -= t * v; 
+        swap(u, v);
+    }
+
+    u %= m;
+    //C++特有のアレ 余りとった結果が負ならmodを足す
+    if(u < 0) u += m;
+    //逆元
+    return u;
+}
+
+int main(){
+    //割られる数
+    ll a = 12345678900000;
+    //割る数
+    ll b = 100000;
+
+    //割られる数を年のためにMODとっておく
+    a %= MOD;
+    //掛け算を実施後もMODを取る
+    cout << a * modinv(b, MOD) % MOD << endl;
+
+}
 ```
 
 # あばばば
