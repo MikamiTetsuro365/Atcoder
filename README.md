@@ -838,7 +838,7 @@ int main(){
 
 **例えば，a=5 mod P=13の時，x=8のとき余りが1になる．式に書くと5×8=40で40/13は3余り1. これを1つの式にまとめると，5×8=13×3+1で移項して，13×(-3)+5×8=1**
 
-**これはP×k+a×x=1と解くことに他ならない．よって，拡張ユークリッドの互除法[*1](http://arc360.info/algo/privatekey.html)[*2](http://www.tbasic.org/reference/old/ExEuclid.html)[*3](https://qnighy.hatenablog.com/entry/20091230/1262173513)[*4](http://noshi91.hatenablog.com/entry/2019/04/01/184957)[*5](https://gbb60166.jp/cipher/mathemat.htm)でkとxを同時に求める．**
+**これはP×k+a×x=1と解くことに他ならない．よって，拡張ユークリッドの互除法[*1](http://arc360.info/algo/privatekey.html)[*2](http://www.tbasic.org/reference/old/ExEuclid.html)[*3](https://qnighy.hatenablog.com/entry/20091230/1262173513)[*4](http://noshi91.hatenablog.com/entry/2019/04/01/184957)[*5](https://gbb60166.jp/cipher/mathemat.htm)[*6](http://proofcafe.org/k27c8/math/math/group/page/identity_inverse/)でkとxを同時に求める．**
 
 ```cpp
 #include "bits/stdc++.h"
