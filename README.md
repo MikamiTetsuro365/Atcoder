@@ -838,7 +838,7 @@ int main(){
 
 **例えば，a=5 mod P=13の時，x=8のとき余りが1になる．式に書くと5×8=40で40/13は3余り1. これを1つの式にまとめると，5×8=13×3+1で移項して，13×(-3)+5×8=1**
 
-**これはP×k+a×x=1と解くことに他ならない．よって，拡張ユークリッドの互除法[*1](http://arc360.info/algo/privatekey.html)[*2](http://www.tbasic.org/reference/old/ExEuclid.html)[*3](https://qnighy.hatenablog.com/entry/20091230/1262173513)[*4](http://noshi91.hatenablog.com/entry/2019/04/01/184957)でkとxを同時に求める．**
+**これはP×k+a×x=1と解くことに他ならない．よって，拡張ユークリッドの互除法[*1](http://arc360.info/algo/privatekey.html)[*2](http://www.tbasic.org/reference/old/ExEuclid.html)[*3](https://qnighy.hatenablog.com/entry/20091230/1262173513)[*4](http://noshi91.hatenablog.com/entry/2019/04/01/184957)[*5](https://gbb60166.jp/cipher/mathemat.htm)でkとxを同時に求める．**
 
 ```cpp
 #include "bits/stdc++.h"
@@ -917,6 +917,21 @@ int main(){
 
 }
 ```
+
+# 二項係数nCk
+**工事中**
+```cpp
+
+```
+
+# 何通り系
+**いつもキレそうになる**
+## べき乗：pow(x, y)
+## 階乗：factrial(n)
+## 順列：nPk(n, k)
+## 組み合わせ：nCk(n, k)
+## 重複組み合わせ：nHk(n, k)
+**[参考(youtube)](https://www.youtube.com/playlist?list=PLd3yb0oVJ_W1wWsVpcQvuHwEea1SeVO_s)**
 
 
 # あばばば
