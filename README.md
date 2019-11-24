@@ -931,7 +931,7 @@ int main(){
 ## 順列：nPk(n, k)
 ## 組み合わせ：nCk(n, k)
 ## 重複組み合わせ：nHk(n, k)
-**[参考(youtube)](https://www.youtube.com/playlist?list=PLd3yb0oVJ_W1wWsVpcQvuHwEea1SeVO_s)**
+**[参考1(youtube)](https://www.youtube.com/playlist?list=PLd3yb0oVJ_W1wWsVpcQvuHwEea1SeVO_s)[参考2](https://www.risuuhakusyo.com/chouhuku-kumiawase)**
 
 
 # あばばば
