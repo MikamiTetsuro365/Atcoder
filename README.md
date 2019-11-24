@@ -838,51 +838,84 @@ int main(){
 
 **例えば，a=5 mod P=13の時，x=8のとき余りが1になる．式に書くと5×8=40で40/13は3余り1. これを1つの式にまとめると，5×8=13×3+1で移項して，13×(-3)+5×8=1**
 
-**これはP×k+a×x=1と解くことに他ならない．よって，拡張ユークリッドの互除法[*1]](http://arc360.info/algo/privatekey.html)でkとxを同時に求める．**
+**これはP×k+a×x=1と解くことに他ならない．よって，拡張ユークリッドの互除法[*1](http://arc360.info/algo/privatekey.html)でkとxを同時に求める．**
 
 ```cpp
 #include "bits/stdc++.h"
+
 using namespace std;
 typedef long long int ll;
+typedef pair<ll, ll > pi;  
+typedef pair<pair<ll, ll >, ll > pii;  
+vector<ll > vec;
+vector<vector<ll > > vec2;
+ll MOD = 1000000007;
+ll INF = 11451419194545;
 
-ll mod = 1000000007;
-ll modinv(ll a, ll m = mod){
-    ll b = m; ll u = 1; ll v = 0;
-    //
-    while(b){
-        // a / b = t * b + a % b
-        ll t = a / b;
-        a -= t * b; 
-        swap(a, b);
-        u -= t * v; 
-        swap(u, v);
+pii extgcd(ll a, ll b){
+    //前提：aとbが互いに素であること．
+    pii x(make_pair(1,0), a);
+    pii y(make_pair(0,1), b);
+
+    ll div = 0;
+
+    //終了条件:(GCD(a,b), 0)または(0,GCD(a,b))
+    while(true){
+        if(y.second == 0) return x;
+        
+        div = x.second / y.second;
+        x.second = x.second  - div * y.second;
+        x.first.first = x.first.first - div * y.first.first;
+        x.first.second = x.first.second - div * y.first.second;
+
+        if(x.second == 0) return y;
+
+        div = y.second / x.second;
+        y.second = y.second - div * x.second;
+        y.first.first = y.first.first - div * x.first.first;
+        y.first.second = y.first.second - div * x.first.second;
     }
+}
 
-    u %= m;
-    //C++特有のアレ 余りとった結果が負ならmodを足す
-    if(u < 0) u += m;
-    //逆元
-    return u;
+ll modinv(ll a, ll m = MOD){
+    //前提：aとmが互いに素であること．
+    pii ans;
+    ans = extgcd(a, m);
+
+    ll invNum = 0;
+    invNum = ans.first.first;
+    invNum %= m;
+    //C++特有の剰余がマイナスになってしまう対策
+    if(invNum < 0) invNum += m;
+
+    return invNum;
+}
+
+ll warizan_mod(ll warareru, ll waru, ll m = MOD){
+    //割られる数に逆元をかけるだけ
+    warareru %= m;
+    return warareru * modinv(waru, m) % m;
 }
 
 int main(){
-    //割られる数
-    ll a = 12345678900000;
-    //割る数
-    ll b = 100000;
 
-    //割られる数を年のためにMODとっておく
-    a %= MOD;
-    //掛け算を実施後もMODを取る
-    cout << a * modinv(b, MOD) % MOD << endl;
+    pii ans;
+    ll a, b; cin >> a >> b ;
+
+    //extgcd確認
+    ans = extgcd(a, b);
+    cout << ans.first.first << " " << ans.first.second << endl;
+    //modinv確認
+    for (int i = 1; i < 13; ++i) {
+        cout << i << " 's inv: " << modinv(i, 13) << endl;
+    }
+    //warizan_mod確認
+    ll warareru = 12345678900000;
+    ll waru = 100000;
+
+    cout << warizan_mod(warareru, waru, MOD) << endl;
 
 }
-```
-
-## 拡張ユークリッドの互除法
-**念の為**
-```cpp
-
 ```
 
 
