@@ -64,6 +64,7 @@ ll warizan_mod(ll warareru, ll waru, ll m = MOD){
     return warareru * modinv(waru, m) % m;
 }
 
+//階乗と逆元を列挙
 void combination(ll num, ll m = MOD){
     fact.assign(num + 1919, 0);
     finv.assign(num + 1919, 0);

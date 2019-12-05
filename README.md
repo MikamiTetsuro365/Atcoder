@@ -840,6 +840,8 @@ int main(){
 
 **これはP×k+a×x=1と解くことに他ならない．よって，拡張ユークリッドの互除法[*1](http://arc360.info/algo/privatekey.html)[*2](http://www.tbasic.org/reference/old/ExEuclid.html)[*3](https://qnighy.hatenablog.com/entry/20091230/1262173513)[*4](http://noshi91.hatenablog.com/entry/2019/04/01/184957)[*5](https://gbb60166.jp/cipher/mathemat.htm)[*6](http://proofcafe.org/k27c8/math/math/group/page/identity_inverse/)でkとxを同時に求める．**
 
+**二項係数を効率よく求めたいときにも逆元をうまく使うと良い**
+
 ```cpp
 #include "bits/stdc++.h"
 
@@ -851,6 +853,13 @@ vector<ll > vec;
 vector<vector<ll > > vec2;
 ll MOD = 1000000007;
 ll INF = 11451419194545;
+
+//階乗
+vector<ll>fact;
+//逆元
+vector<ll>inv;
+//逆元階乗
+vector<ll>finv;
 
 pii extgcd(ll a, ll b){
     //前提：aとbが互いに素であること．
@@ -897,6 +906,43 @@ ll warizan_mod(ll warareru, ll waru, ll m = MOD){
     return warareru * modinv(waru, m) % m;
 }
 
+//階乗と逆元を列挙
+void combination(ll num, ll m = MOD){
+    fact.assign(num + 1919, 0);
+    finv.assign(num + 1919, 0);
+    inv.assign(num  + 1919, 0);
+
+    //初期化
+    fact[0] = 1; inv[0] = 1;
+    //テーブルに列挙
+    for(ll i = 1; i < fact.size(); i++){
+        fact[i] = fact[i - 1] * i % m;
+        inv[i]  = modinv(fact[i]);
+    }
+}
+
+//階乗 n!
+ll factrial(ll n){
+    return fact[n];
+}
+
+//順列 nPk n!/(n-k)!
+ll nPk(ll n, ll k, ll m = MOD){
+    if(n < 0 || k < 0 || n < k) return 0;
+    return fact[n] * inv[n - k] % m;
+}
+
+//二項係数 nCk n!/(k!*(n-k)!)
+ll nCk(ll n, ll k, ll m = MOD){
+    if(n < 0 || k < 0 || n < k) return 0;
+    return fact[n] * (inv[k] * inv[n - k] % m) % m;
+}
+
+//重複組み合わせ n+k-1Ck
+ll nHk(ll n, ll k, ll m = MOD){
+    return nCk(n+k-1, k);
+}
+
 int main(){
 
     pii ans;
@@ -915,17 +961,17 @@ int main(){
 
     cout << warizan_mod(warareru, waru, MOD) << endl;
 
+    //二項係数確認
+    if(a < b) swap(a, b);
+    combination(a + b);
+    //cout << nCk(X, Y) << endl; 
+    cout << nCk(a + b, a) << endl; 
+
 }
 ```
 
-# 二項係数nCk
-**工事中**
-```cpp
-
-```
-
-# 何通り系
-**いつもキレそうになる**
+# 何通り系の早見表
+**いつもキレそうになる.**
 ## べき乗：pow(x, y)
 ## 階乗：factrial(n)
 ## 順列：nPk(n, k)
