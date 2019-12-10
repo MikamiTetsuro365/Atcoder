@@ -30,7 +30,6 @@ vector<vector<ll > > vec(n_rows, vector<ll >(n_cols, value));
 
 # map全列挙
 ```cpp
-
 map<ll, ll> mp;
 //ここになにか入力
 auto begin = mp.begin(), end = mp.end();
@@ -38,6 +37,19 @@ for (auto iter = begin; iter != end; iter++) {
     cout << iter -> first << " " <<  iter -> second << endl;
 }
 
+```
+
+# 整数と小数の判定
+**クソどうでも良いけど...ceil(切り上げ)とfloor(切り捨て)で同じだと整数(少数ではない)**
+```cpp
+double ans;
+cin >> ans;
+//cout << ans << endl;
+if(ceil(ans) != floor(ans)){
+    cout << "No" << endl;
+}else{
+    cout << "Yes" << endl;
+}
 ```
 
 # Priority queue(優先度付きQueue)
@@ -357,19 +369,6 @@ int main() {
 # 気持ちの良いDP
 **VectorでDPテーブルを作ってしまうと膨大なメモリ空間にアクセスする必要があるのでTLE必須→Mapで頑張った[ARC073_B](https://atcoder.jp/contests/abc060/tasks/arc073_b)**
 **要素が2つあった[ABC054_D](https://atcoder.jp/contests/abc054/submissions/7929944)**
-
-# 整数と小数の判定
-**クソどうでも良いけど...ceil(切り上げ)とfloor(切り捨て)で同じだと整数(少数ではない)**
-```cpp
-double ans;
-cin >> ans;
-//cout << ans << endl;
-if(ceil(ans) != floor(ans)){
-    cout << "No" << endl;
-}else{
-    cout << "Yes" << endl;
-}
-```
 
 # next_permutation
 **順列を生成する便利な奴[アルゴリズム](https://scrapbox.io/ganariya/%E8%BE%9E%E6%9B%B8%E5%BC%8F%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)**
