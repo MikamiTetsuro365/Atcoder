@@ -300,7 +300,7 @@ for(ll left = 0; left < sum.size(); left += 2){
 ```
 
 # 尺取り法
-**ニョキニョキ**
+**[ARC098_D](https://atcoder.jp/contests/abc098/submissions/8893613)**
 ```cpp
 
 ```
