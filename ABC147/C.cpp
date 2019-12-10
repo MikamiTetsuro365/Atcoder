@@ -22,54 +22,38 @@ int main() {
         for(ll j = 0; j < t; j++){
             ll a, b; cin >> a >> b;
             a--;
-
-            if(b == 0){
-                b = 2;
-            }
             v[i][a] = b;
         }
     }
 
     ll ans = 0;
-    for(ll i = 0; i <= (1<<N); i++){
+    for(ll i = 0; i < (1<<N); i++){
         //ビットの位置を数える
         ll t_ans = 0;
+        ll shogen = 0;
         bool f = true;
-        map<ll, ll> tr;
         for(ll j = 0; j < N; j++){
             //右シフトして最下位で立っているかどうか判定
-            if((i >> j) & 1 == 1){
+            //syogen
+            //cout << i << ":" << bitset<8>(i) << endl;
+            //cout << (1 << j) << endl;
+            if(i & (1 << j)){
                 t_ans++;
-                tr[j] = 1;
-            }
-        } 
-        //本物は全員同じ発言をしていないとだめ
-        //一つでも矛盾があるとだめ
-        auto begin1 = tr.begin(), end1 = tr.end();
-        for (auto iter = begin1; iter != end1; iter++) {
-            //正直者と仮定している人
-            ll trr = iter -> first;
-            //cout << trr << endl;
-            auto begin = v[trr].begin(), end = v[trr].end();
-            for (auto iter = begin; iter != end; iter++) {
-                //証言
-                ll a = iter -> first;
-                ll b = iter -> second;
-
-                if(b == 2){
-                    //正直者がうそつきといった人が正直者と仮定されていたらfalse
-                    if(tr[a] == 1){
+                auto begin = v[j].begin(), end = v[j].end();
+                for (auto iter = begin; iter != end; iter++) {
+                    //正直者と不親切者を仮定する
+                    //正直者の証言は必ず正直.正直者の発言だけに注目する
+                    //仮定で不親切者と仮定されている者を正直というと矛盾
+                    //また逆に仮定で正直者と仮定した者を不親切者というと矛盾
+                    //この２つをチェックする
+                    // 1 != 0 0 != 1 が 矛盾
+                    if( (0 != (i & (1 << iter->first))) != iter->second){
                         f = false;
                     }
-                }else{
-                    //正直者が正直者といった人が正直者と仮定されていなかったらfalse
-                    if(tr[a] != 1 || v[a][trr] == 2){
-                        f = false;
-                    }         
                 }
+            }
+        } 
 
-            }  
-        }
         if(f == true){
             ans = max(t_ans, ans);
         }
