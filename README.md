@@ -311,6 +311,9 @@ for(ll left = 0; left < sum.size(); left += 2){
 }
 ```
 
+# Binary Indexed Tree
+**区間和やそれに対して任意の値に更新することがO(lngN)で高速に実行できる**
+
 # 尺取り法
 **例1[ARC098_D](https://atcoder.jp/contests/abc098/submissions/8893613)**
 
