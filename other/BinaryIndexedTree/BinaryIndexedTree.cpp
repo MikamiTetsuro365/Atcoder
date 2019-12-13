@@ -33,9 +33,26 @@ ll intervalSum(ll a){
     return ret;
 }
 
+//転倒数
+ll invNum(vector<ll > num){
+    //BITに順番に数を追加していく.
+    ll ans = 0;
+    for(ll i = 0; i < N; i++){
+        //数列の値を追加する前
+        //num[i]が追加される前，それより小さい数がいくつ追加されているか調べる.
+        //iは何個目にnum[i]がBITに追加されるか
+        //つまりi - intervalSum(num[i])で実際の数列で左端から
+        //数を転倒していったときi個目にいる自分が自身より大きい数と何回すれ違うかを表す.
+        ans += i - intervalSum(num[i]);
+        //最後にnum[i]を区間に足しておく.
+        add(num[i], 1);
+    }
+    return ans;
+}
+
 int main() {    
     ll q;
-    cin >> N >> q;
+    cin >> N;
     bit.assign(N+1, 0);
 
     //立っているビットが常に1つある状態にしたいので添字は1からスタート
@@ -46,8 +63,9 @@ int main() {
     }
     */
 
-   vector<ll > ans;
-   for(ll i = 0; i < q; i++){
+    /*クエリの処理
+    vector<ll > ans;
+    for(ll i = 0; i < q; i++){
         ll com; cin >> com;
         ll x, y; cin >> x >> y; 
         if(com == 0){
@@ -56,9 +74,15 @@ int main() {
             ans.push_back(intervalSum(y) - intervalSum(x-1));
             //cout << intervalSum(y) - intervalSum(x-1) << endl;
         }
-   }
+    }
+    */
+    
+    //転倒数
+    vector<ll > num(N, 0);
+    for(ll i = 0; i < N; i++){
+        cin >> num[i];
+    }
 
-   for(ll i = 0; i < ans.size(); i++){
-       cout << ans[i] << endl;
-   }
+    cout << invNum(num) << endl;
+
 }
