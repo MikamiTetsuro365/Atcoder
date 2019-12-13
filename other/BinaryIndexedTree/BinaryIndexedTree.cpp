@@ -24,7 +24,7 @@ void add(ll a, ll w){
 }
 
 //区間1~aの和の計算
-ll intervalSum(ll a){
+ll intervalSum_1_a(ll a){
     //次にどこを足せばよいかは区間番号からその区間番号の長さを引くと求まる
     ll ret = 0;
     for(ll i = a; i > 0; i -= i & -i){
@@ -33,22 +33,46 @@ ll intervalSum(ll a){
     return ret;
 }
 
+//区間a~bの和の計算
+ll intervalSum_a_b(ll a, ll b){
+    return intervalSum_1_a(b) - intervalSum_1_a(a-1);
+}
+
+//
+
 //転倒数
 ll invNum(vector<ll > num){
     //BITに順番に数を追加していく.
     ll ans = 0;
     for(ll i = 0; i < N; i++){
         //数列の値を追加する前
-        //num[i]が追加される前，それより小さい数がいくつ追加されているか調べる.
+        //num[i]が追加される前，intervalSum(num[i])でそれより小さい数がいくつ追加されているか調べる.
         //iは何個目にnum[i]がBITに追加されるか
         //つまりi - intervalSum(num[i])で実際の数列で左端から
         //数を転倒していったときi個目にいる自分が自身より大きい数と何回すれ違うかを表す.
-        ans += i - intervalSum(num[i]);
+        ans += i - intervalSum_1_a(num[i]);
         //最後にnum[i]を区間に足しておく.
         add(num[i], 1);
     }
     return ans;
 }
+
+//二分探査 累積和がw以上になる最小のx
+ll lowerBound(ll w){
+    if(w <= 0) return 0;
+    ll x = 0;
+    ll k = 1;
+    while(k * 2 <= N) k *= 2;
+    for(ll i = k; i > 0; i /= 2){
+        if(x + i <= N && bit[x + i] < w){
+            w -= bit[x + i];
+            x += i;
+        }
+    }
+    return x + 1;
+}
+
+
 
 int main() {    
     ll q;
