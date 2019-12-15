@@ -29,13 +29,12 @@ int main() {
         mn -= 1;
     }
 
+    //表示
     priority_queue<pi, vector<pi>, greater<pi > > que;
     auto begin = mp.begin(), end = mp.end();
     for (auto iter = begin; iter != end; iter++) {
         que.push(make_pair(iter->second, iter->first));
-    }    
-
-    //表示
+    }
     for(ll i = 0; i < N; i++){
         cout << que.top().second << endl;
         que.pop();
