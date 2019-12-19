@@ -20,6 +20,7 @@ int main() {
 
     //偶数の個数（厳密には同じ単語同士のペアの数）
     ll even = 0;
+    //奇数個の単語の左右を偶数このペアで挟むと回文になります
     priority_queue<ll ,vector<ll >, greater<ll > > K;
 
     for(ll i = 0; i < s.length(); i++){
@@ -32,15 +33,19 @@ int main() {
         if(num % 2 == 1){
             K.push(1);
         }
+        //偶数ペアの個数を格納
         even += num / 2;
     }
 
+    //すでに回文になっているときは終了する
     if(K.empty()){
         cout << s.length() << endl;
         return 0;
     }
 
-    for(ll i = even; i >= 0; i--){
+    //偶数のペアで奇数のアルファベットを挟んでいく
+    //最終的にプライオリティキューのTopが最小のながさの回文になる
+    for(ll i = 0; i < even; i++){
         ll tmp = K.top();
         K.pop();
         K.push(tmp + 2);
