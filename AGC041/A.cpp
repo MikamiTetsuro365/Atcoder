@@ -11,5 +11,14 @@ ll INF = 1145141919454519;
 
 int main() {
 
+    ll N;
+    cin >> N;
+
+    for(ll i = 0; i < N; i++){
+        ll t; cin >> t;
+        vec.push_back(t);
+    }
+
+    
 
 }
