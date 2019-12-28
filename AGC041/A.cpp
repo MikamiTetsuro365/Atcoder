@@ -11,14 +11,20 @@ ll INF = 1145141919454519;
 
 int main() {
 
-    ll N;
-    cin >> N;
+    ll N, A, B;
+    cin >> N >> A >> B;
 
-    for(ll i = 0; i < N; i++){
-        ll t; cin >> t;
-        vec.push_back(t);
+    if(B - A == 1){
+        //cout << "a" << endl;
+        cout << min(B - 1, N - A) << endl;
+    }else{
+        if((B - A - 1) % 2 == 1){
+            //cout << "a" << endl;
+            cout << (B - A - 1) / 2 + 1 << endl;
+        }else{
+            //cout << "a" << endl;
+            cout << min(B - 1, N - A) << endl;
+        }
     }
-
-    
 
 }
