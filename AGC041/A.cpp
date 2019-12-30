@@ -13,18 +13,16 @@ int main() {
 
     ll N, A, B;
     cin >> N >> A >> B;
-
-    if(B - A == 1){
-        //cout << "a" << endl;
-        cout << min(B - 1, N - A) << endl;
+    
+    if(A % 2 == B % 2){
+        //お互いの卓の真ん中で出会える
+        //奇数卓真ん中にアレば
+        cout << (B - A) / 2 << endl;
     }else{
-        if((B - A - 1) % 2 == 1){
-            //cout << "a" << endl;
-            cout << (B - A - 1) / 2 + 1 << endl;
-        }else{
-            //cout << "a" << endl;
-            cout << min(B - 1, N - A) << endl;
-        }
+        //偶数卓挟んでいるときはお互い寄り合ってもだめ
+        //どちらかが一度端っこに行って調整したのちもう一方へ寄っていく
+        //調整が済むとAとBの間には奇数卓(B - A - 1)挟んでいることになる
+        cout << min(A - 1, N - B) + 1 + (B - A - 1) / 2 << endl;
     }
 
 }
