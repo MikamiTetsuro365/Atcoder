@@ -9,54 +9,62 @@ vector<vector<ll > > vec2;
 ll MOD = 1000000007;
 ll INF = 1145141919454519;
 ll N, M, V, P;
+//番兵を入れていなかったので添字の操作と二分探査が噛み合わずドチャクソ悩んだ
+//要復習
 
 bool check(ll mid){
-
-    //midは配列の中のどこ?
-    ll idx = mid;
-    //Pは配列の中でどこ？
-    ll p = P;
-    //すでにP番目以内ですか？
-    cout << idx << " " << p << endl;
-    if(idx <= p){
-        return true;
+    //vec[0]は番兵
+    //vec[mid]がP番目に選ばれれば目的を満たせる
+    //満たすような操作を考える
+    //vec[mid]がP番目に入るためにはvec[P]より大きいスコアになる必要がある
+    //とりあえず全員がvec[mid]に投票してスコアをMだけ上げる
+    vector<ll > tmp = vec;
+    //トータルの投票数
+    ll tmpVM = V * M;
+    //vec[mid+1]~vec[N]に関しては投票者が全員投票してもvec[mid]にスコアより
+    //小さくなる. なぜなら vec[mid] >= vec[mid+1] ...降順に並んでいるから
+    for(ll i = mid; i <= N; i++){
+        if(tmpVM <= 0){
+            break;
+        }
+        tmp[i] += M;
+        tmpVM -= M;
+    }
+    //vec[1]~vec[P-1]はvec[mid]より大きくて構わない
+    //なぜなら，vec[mid]がP番目であるとき,この範囲のスコアが高くなってもvec[P]
+    //はP番目に選ばれるのは確実だから
+    for(ll i = 1; i < P; i++){
+        if(tmpVM <= 0){
+            break;
+        }
+        tmp[i] += M;
+        tmpVM -= M;        
     }
 
-    //vec[idx]がP番目以内に入ることができるか?
-    //全員の投票をvec[idx]に集める
-    ll base = vec[idx] + M;
-    cout << vec[idx] << " " << base << endl;
+    //vec[P]~vec[mid-1]に関してはvec[mid]+Mを超えないように投票する必要がある
+    //なぜなら，超えてしまうとvec[mid]はP番目に選ばれなくなるから
+    for(ll i = P; i < mid; i++){
+        if(tmpVM <= 0){
+            break;
+        }
+        ll sabun = tmp[mid] - tmp[i];
+        if(sabun < 0){
+            //vec[mid]+Mがvec[P]のスコアを超えられないと絶対にP番目に選ばれない
+            return false;
+        } 
+        tmp[i] += sabun;
+        tmpVM -= sabun;        
+    }    
 
-    //投票数は1減る
-    ll v = V - 1;
-    //全員が全力で投票してもP番目以内に入れない時
-    //vec[idx]は絶対に採用されることはない
-    if(vec[p] > base){
+    if(tmpVM > 0){
+        //全員の投票権を使い切れていない
+        //つまりvec[P]~vec[mid-1]でまだまで投票できるのでvec[mid]はP番目に選ばれない
         return false;
     }
-    //P番目に入れるなら1~P-1までとmid+1~Nまでには全員投票しても順番は変わらない
-    cout << p << "+" << N << "-" << idx << "=" << p + N - idx <<endl;
-    if(v <= p + N - idx){
-        return true;
-    }
-    cout << "dame" << endl;
-    v -= p + N - idx;
-    
-    //P~mid-2に関してはみmidに対して全力投票した結果より下回ってくれないと困る
-    //つまりmidがP番目になるのを邪魔しないように投票できなければならない
-    //残りを投票
-    ll nokori = v * M;
-    cout << "nokori" << nokori << endl;
 
-    for(ll i = p; i < idx; i++){
-        //最大なんぼ投票できるかな？
-        ll sa = base - vec[i];
-        cout << sa << endl;
-        if(nokori <= 0) break;
-        nokori -= sa;
+    if(tmp[P] > tmp[mid]){
+        return false;
     }
-
-    if(nokori > 0) return false;
 
     return true;
 }
@@ -79,7 +87,7 @@ int main() {
     ll left = 1; ll right = N + 1;
     while(left + 1 < right){
         ll mid = (left + right) / 2;
-        cout << "mid" << mid << endl;
+        //cout << "mid" << mid << endl;
         if(check(mid)){
             left = mid;
         }else{
