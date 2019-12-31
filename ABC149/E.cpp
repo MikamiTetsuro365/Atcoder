@@ -17,6 +17,7 @@ ll check(ll num){
     ll sum = 0;
     //二分探査
     //cout << num << endl;
+    //これもある意味条件を満たすものの中で最小の値を探している
     for(ll i = 0; i < N; i++){
         ll left = 0; ll right = N;
         //最初に探索する数がmidの値より下回っているなら二分探査を実施しない
