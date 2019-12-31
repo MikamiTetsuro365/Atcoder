@@ -861,21 +861,40 @@ int main(){
 ## 条件を満たすような最小値を求める
 **check関数にmidを満たすか確認する処理をかく**
 ```cpp
-    //最小の値なのでleftは当てはまらない数, rigthはずっと条件に当てはまる数（最悪の答え）
-    ll left = -1; ll right = 100
+    //最小の値なのでngは当てはまらない数, okはずっと条件に当てはまる数
+    ll ng = -1; ll ok = 100;
  
     //最小値を求める
     //rightを寄せていく
-    while(left + 1 < right){
-        ll mid = (left + right) / 2;
+    while(ng + 1 < ok){
+        ll mid = (ng + ok) / 2;
         if(check(mid)){
-            right = mid;
+            ok = mid;
         }else{
-            left = mid;
+            ng = mid;
         }
     }
     //最小値
-    cout << right << endl;
+    cout << ok << endl;
+```
+
+## 条件を満たすような最大値を求める
+```cpp
+    //okはずっと条件が当てはまり続ける条件, ngは条件が当てはまらない条件
+    ll ok = 0; ll ng = INF;
+ 
+    //最小値を求める
+    //rightを寄せていく
+    while(ng + 1 < ok){
+        ll mid = (ng + ok) / 2;
+        if(check(mid)){
+            ok = mid;
+        }else{
+            ng = mid;
+        }
+    }
+    //最小値
+    cout << ok << endl;
 ```
 
 # 逆元
