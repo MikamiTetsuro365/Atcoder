@@ -86,6 +86,11 @@ ll gcd(ll a, ll b){
 
 
 # 最小公倍数
+```cpp
+ll lcm(ll a, ll b){
+    return a / gcd(a, b) * b;
+}
+```
 
 # 立っているビットをカウント
 **GCCの__builtin関数[ここ](https://qnighy.hatenablog.com/entry/20090921/1253551047)**

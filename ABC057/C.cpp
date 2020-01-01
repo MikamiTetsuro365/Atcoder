@@ -8,11 +8,10 @@ vector<ll > vec;
 vector<vector<ll > > vec2;
 ll MOD = 1000000007;
 
-ll divisor(ll n) {
+void divisor(ll n) {
   ll ans = 0;
   vector< ll > div;
-  ll div1 = 0;
-  ll div2 = 0;
+
   for(ll i = 1; i * i <= n; i++) {
     if(n % i == 0) {
       div.push_back(i);
@@ -23,12 +22,18 @@ ll divisor(ll n) {
       }
     }
   }
-  //sort(div.begin(), div.end());
-  return ans;
+  sort(div.begin(), div.end());
+  
+  string s;
+  s = to_string(div[div.size()/2]);
+
+  cout << s.length() << endl;
+
 }
 
 int main(){
 
     ll N; cin >> N;
 
+    divisor(N);
 }
