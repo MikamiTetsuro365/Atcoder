@@ -10,28 +10,22 @@ ll MOD = 1000000007;
 ll INF = 1145141919454519;
 
 
+//べき定数 a^n nは2以上
+//1のときはどんなnを書けても1しかない
+//b^2 b^3 b^4...をXの範囲を超えないだけ求めてやる
+//それだけ
+//なんか難しかった（は？
 int main() {
-    string s;
-    cin >> s;
-    ll K;
-    cin >> K;
-    
-    map<string, ll > mp;
-    for(ll i = 0; i < K; i++){
-        for(ll j = 0; j < s.length() - i; j++){
-            mp[s.substr(j, i + 1)]++;
-        }        
-    }
-
-    ll cn = 0;
-    auto begin = mp.begin(), end = mp.end();
-    for (auto iter = begin; iter != end; iter++) {
-        if(cn > K){
-            cout << iter->first << endl;
-            return 0;
+    ll X; cin >> X;
+    ll ans = 1;
+    for(ll i = 2; i <= X; i++){
+        ll tmp = i * i;
+        while(tmp <= X){
+            ans = max(ans, tmp);
+            tmp *= i;
         }
-        cn++;
     }
 
+    cout << ans << endl;
 
 }
