@@ -1,64 +1,58 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <random>
-#include <string>
-#include <cmath>
-#include <sstream>
-#include <istream>
-#include <iomanip>
-#include <typeinfo>
-#include <stack>
-#include <map> 
+#include "bits/stdc++.h"
 
 using namespace std;
-typedef long long ll;
-ll N;
+typedef long long int ll;
+typedef pair<ll, ll > pi;  
+typedef pair<pair<ll, ll >, ll > pii;  
+vector<ll > vec;
+vector<vector<ll > > vec2;
+ll MOD = 1000000007;
+ll INF = 1145141919454519;
 
-ll search_v(vector<ll > v, ll in){
 
-    for(ll i = 0; i < v.size(); i++){
-        if(v[i] == in){
-            return i;
-        }
+int main() {
+
+    ll n = 0;
+    cin >> n;
+    //奇数番
+    vector<pi > odd(101000);
+    for(ll i = 0; i < odd.size(); i++){
+        odd[i].first = 0;
+        odd[i].second = i+1;
+    }
+    //偶数番
+    vector<pi > even(101000);
+    for(ll i = 0; i < even.size(); i++){
+        even[i].first = 0;
+        even[i].second = i+1;
     }
 
-    return -1;
-}
+    ll max_odd = -1;
+    ll max_even = -1;
+    
+    for(ll i = 1; i <= n; i++){
+        ll t; cin >> t;
 
-int main(){
-    //奇数と偶数番号で別に考える
-    cin >> N;
-    map<ll, ll> k_mp;
-    map<ll, ll> g_mp;
-
-    ll g_num = 0;
-    ll g_max = 0;
-
-    ll k_num = 0;
-    ll k_max = 0;
-
-    for(ll i = 0; i < N; i++){
-        ll in;
-        cin >> in;
-        if(i % 2 == 0){
-            g_mp[in]++;
-
-            if(g_max < g_mp[in]){
-                g_num = in;
-                g_max = g_mp[in];
-            }
-
+        if(i % 2 == 1){
+            even[t].first++;
+            //max_even = max(max_even, even[t].first);
         }else{
-            k_mp[in]++;
-            if(k_max < k_mp[in]){
-                k_num = in;
-                k_max = k_mp[in];
-            }
+            odd[t].first++;
+            //max_odd = max(max_odd, odd[t].first);
         }
     }
 
-    //ll ans = N / 2;
+    sort(odd.rbegin(), odd.rend());
+    sort(even.rbegin(), even.rend());
 
-    cout << ans << endl;
+    if(odd[0].second == even[0].second){
+        ll t1_ans = n / 2 - odd[1].first + n / 2 - even[0].first;
+        ll t2_ans = n / 2 - odd[0].first + n / 2 - even[1].first;
+        
+        cout << min(t1_ans, t2_ans) << endl;
+
+    }else{
+        cout << n / 2 - odd[0].first + n / 2 - even[0].first << endl;
+    } 
+
 }
