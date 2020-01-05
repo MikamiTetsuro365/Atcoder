@@ -3,8 +3,8 @@
 
 **以下のライブラリとかは課題が山積みなので自分以外がコピペして使うの非推奨です（糞）**
 
-**便利リンク**
-- [https://kenkoooo.com/atcoder/](https://kenkoooo.com/atcoder/)
+# 便利リンク
+- 精進状況の把握 [https://kenkoooo.com/atcoder/](https://kenkoooo.com/atcoder/)
 
 # テンプレ
 **bitsフォルダをコピペして以下を貼り付け**
