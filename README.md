@@ -870,6 +870,7 @@ int main(){
 
 ## 条件を満たすような最小値を求める
 **[ARC075_D](https://atcoder.jp/contests/arc075/tasks/arc075_b)**
+
 **check関数にmidを満たすか確認する処理をかく**
 ```cpp
     //最小の値なのでngは当てはまらない数, okはずっと条件に当てはまる数
