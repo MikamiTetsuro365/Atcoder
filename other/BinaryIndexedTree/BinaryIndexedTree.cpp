@@ -58,6 +58,7 @@ ll invNum(vector<ll > num){
 }
 
 //二分探査 累積和がw以上になる最小のx
+/*
 ll lowerBound(ll w){
     if(w <= 0) return 0;
     ll x = 0;
@@ -71,6 +72,7 @@ ll lowerBound(ll w){
     }
     return x + 1;
 }
+*/
 
 
 
@@ -80,12 +82,11 @@ int main() {
     bit.assign(N+1, 0);
 
     //立っているビットが常に1つある状態にしたいので添字は1からスタート
-    /*
+    //構築
     for(ll i = 1; i <= N; i++){
         ll t = 0; cin >> t;
         add(i, t);
     }
-    */
 
     /*クエリの処理
     vector<ll > ans;
@@ -102,11 +103,12 @@ int main() {
     */
     
     //転倒数
+    /*
     vector<ll > num(N, 0);
     for(ll i = 0; i < N; i++){
         cin >> num[i];
     }
-
     cout << invNum(num) << endl;
+    */
 
 }
