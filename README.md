@@ -403,8 +403,6 @@ ll lowerBound(ll w){
 }
 */
 
-```
-
 int main() {    
     ll q;
     cin >> N;
@@ -439,8 +437,9 @@ int main() {
     }
     cout << invNum(num) << endl;
     */
-
 }
+
+```
 
 # 尺取り法
 **例1[ARC098_D](https://atcoder.jp/contests/abc098/submissions/8893613)**
