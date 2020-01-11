@@ -28,7 +28,8 @@ int main() {
     for(ll i = 0; i < N; i++){
         ll t; cin >> t;
         if(t % 2 == 1){
-            t = 0;
+            cout << 0 << endl;
+            return 0;
         }
         vec.push_back(t);
     }
@@ -62,6 +63,14 @@ int main() {
     if(LCM == 0){
         cout << 0 << endl;
     }else{
+
+        for(ll i = 0; i < N; i++){
+            if(LCM / B[i] % 2 == 0){
+                cout << 0 << endl;
+                return 0;
+            }
+        }
+
         //奇数倍のみが答えを満たす
         ll kisu = M / LCM;
         //偶数倍の個数は奇数倍から引いておく
