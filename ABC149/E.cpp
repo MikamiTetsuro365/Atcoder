@@ -118,6 +118,7 @@ int main() {
     //cout << left << " " << right << " " << calculator(right) << endl;
     //cout << check(right) << endl;
     //cout << check(left) << " " << check(right) << endl;
+    //cout << right << endl;
     cout << calculator(right) + (M - check(right)) * (right - 1)<< endl;
     //ではどのようなmidを実際にM個選んだ時の最大値を知ることができるか
     //cout << calculator(right) << endl;
