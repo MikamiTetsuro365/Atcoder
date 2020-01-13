@@ -11,17 +11,18 @@ ll INF = 1145141919454519;
 
 using namespace std;
 
-ll G[4][3];
+//long long はこの場合遅い
 
-ll dx[4] = {1, -1, 0, 0};
-ll dy[4] = {0,  0, 1,-1};
+int G[4][3];
+int dx[4] = {1, -1, 0, 0};
+int dy[4] = {0,  0, 1,-1};
 
-ll Key[10][2] = {{0, 2},{1, 2},{1, 1},{1, 0},{2, 2},{2, 1},{2, 0},{3, 2},{3, 1},{3, 0}}; 
+int Key[10][2] = {{0, 2},{1, 2},{1, 1},{1, 0},{2, 2},{2, 1},{2, 0},{3, 2},{3, 1},{3, 0}}; 
 
-vector<vector<ll > > bfs(ll y, ll x){
+vector<vector<int > > bfs(int y, int x){
     //準備
-    vector<vector<ll > > dist(4, vector<ll >(3, -1));
-    queue<pi> que;
+    vector<vector<int > > dist(4, vector<int >(3, -1));
+    queue<pair<int, int > > que;
     //初期化
     dist[y][x] = 0;
     que.push(make_pair(y, x));
@@ -50,40 +51,43 @@ vector<vector<ll > > bfs(ll y, ll x){
 
 int main(){
 
-    ll M;
-    ll r; 
+    clock_t start = clock();
+
+    int M;
+    int r; 
     cin >> M >> r;
 
     //初期化
     G[0][0] = -1;
     G[0][1] = -1;
-    ll ans = INF;
+    int ans = 114514;
     //すべてのテンキーからテンキーへの距離
-    vector<vector<vector<ll > > > dist;
+    vector<vector<vector<int > > > dist;
     for(ll i = 0; i < 10; i++){
         dist.push_back(bfs(Key[i][0], Key[i][1]));
     }
 
     //dp[i][j][k] 
     //i桁目で余りjになるときに入力したテンキーkのうち最小回数
-    vector<vector<vector<ll>>> dp(20, vector<vector<ll>>(100019, vector<ll>(10, INF)));
+    vector<vector<vector<int>>> dp(20, vector<vector<int>>(100019, vector<int>(10, INF)));
     //初期値
     dp[0][0][0] = 0;
 
-    for(ll i = 0; i < 16; i++){
+    for(int i = 0; i < 15; i++){
         //cout << i << endl;
-        for(ll mo = 0; mo < 100000; mo++){
-            for(ll k = 0; k < 10; k++){
+        for(int mo = 0; mo < 100000; mo++){
+            for(int k = 0; k < 10; k++){
                 if(dp[i][mo][k] == -1) continue;
-                ll now_cost = dp[i][mo][k];
+                int now_cost = dp[i][mo][k];
                 //次のテンキーを押しにいく
-                for(ll next_k = 0; next_k < 10; next_k++){
-                    ll next_mo = (mo * 10 + next_k) % M;
-                    ll move = dist[k][Key[next_k][0]][Key[next_k][1]];
+                //最小で次のテンキーを押しにいくには？
+                for(int next_k = 0; next_k < 10; next_k++){
+                    int next_mo = (mo * 10 + next_k) % M;
+                    int move = dist[k][Key[next_k][0]][Key[next_k][1]];
                     //cout << mo << " " << k << " " <<  next_mo << " " << next_mo << endl;
                     //移動と押す回数でmove+1
                     dp[i+1][next_mo][next_k] = min(dp[i+1][next_mo][next_k], now_cost + move + 1);
-                    if(next_mo == 13) cout << dp[i+1][next_mo][next_k] << endl;
+                    //if(next_mo == 13) cout << dp[i+1][next_mo][next_k] << endl;
                     //cout << dp[i+1][next_mo][next_k] << endl;
                 }
             }
@@ -91,9 +95,12 @@ int main(){
     }
 
     //答え確認
-    for(ll k = 0; k < 10; k++){
-        cout << dp[16][r][k] << endl;
-        ans = min(ans, dp[16][r][k]);
+    //基本的に桁数を増やすと操作回数が増えていくが，まれに1111とか22222が最適になる
+    for(int i = 0; i < 16; i++){
+        for(int k = 0; k < 10; k++){
+            //cout << dp[16][r][k] << endl;
+            ans = min(ans, dp[i][r][k]);
+        }
     }
 
     // for(ll k = 0; k < 100000; k++){
@@ -131,4 +138,11 @@ int main(){
     
 
     cout << ans << endl;
+    
+    clock_t end = clock();
+
+    double time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000.0;
+
+    //cout << time << "[ms]" << endl;
+
 }
