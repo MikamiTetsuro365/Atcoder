@@ -12,10 +12,17 @@ ll INF = 1145141919454519;
 
 int main() {
 
-    ll n, m, d; cin >> n >> m >> d;
+    double n, m, d; cin >> n >> m >> d;
 
     double ans = 0;
 
-    
+    if(d == 0){
+        ans = n*(m-1) / (n*n);
+
+    }else{
+        ans = (2 * (n-d) * (m-1)) / (n*n);
+    }
+
+    cout << fixed << setprecision(10) << ans << endl;
 
 }
