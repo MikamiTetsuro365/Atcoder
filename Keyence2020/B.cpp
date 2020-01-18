@@ -34,7 +34,9 @@ int main()
     sort(CC.begin(), CC.end());
 
     ll ans = 0;
-    ll mn = -INF; 
+    ll mn = -INF;
+    //C+rを順番に並べて早いものがちで取っていく
+    //その時たのC-rと重ならないように！
     for(ll i = 0; i < N; i++){
         if(mn <= CC[i].second){
             mn = CC[i].first;
