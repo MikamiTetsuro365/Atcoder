@@ -14,18 +14,12 @@ int main() {
     ll N;
     cin >> N;
 
-    map<vector<ll >, ll> ans;
-
+    ll ans = 0;
     for(ll i = 1; i <= N; i++){
-        if(to_string(i).length() == 1){
-            ans[vector<ll >{i}]++;
-        }else{
-            ll a = to_string(i)[0];
-            ll b = to_string(i)[to_string(i).length()-1];
-            //baみたいなやつと一緒になる
-            
+        string s = to_string(i);
+        if(reverse(s.begin(), s.end()) ){
+
         }
     }
-
 
 }
