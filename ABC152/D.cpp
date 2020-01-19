@@ -15,11 +15,13 @@ int main() {
     cin >> N;
 
     ll ans = 0;
-    for(ll i = 1; i <= N; i++){
-        string s = to_string(i);
-        if(reverse(s.begin(), s.end()) ){
 
-        }
+    ll dp[10][10];
+    memset(dp, 0, sizeof(dp));
+
+    for(ll i = 1; i <= N; i++){
+        if(i < 10)
+        string s = to_string(i);
     }
 
 }
