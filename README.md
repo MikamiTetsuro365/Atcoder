@@ -986,7 +986,7 @@ int main(){
 ```
 
 ## 条件を満たすような最小値を求める
-**[ARC075_D](https://atcoder.jp/contests/arc075/tasks/arc075_b)**
+**[ARC075_D](https://atcoder.jp/contests/arc075/tasks/arc075_b) [CPSCO2019_Session4_D](https://atcoder.jp/contests/cpsco2019-s4/tasks/cpsco2019_s4_d)**
 
 **check関数にmidを満たすか確認する処理をかく**
 ```cpp
