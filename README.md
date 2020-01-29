@@ -1014,7 +1014,7 @@ int main(){
  
     //最小値を求める
     //rightを寄せていく
-    while(ng + 1 < ok){
+    while(ok + 1 < ng){
         ll mid = (ng + ok) / 2;
         if(check(mid)){
             ok = mid;
