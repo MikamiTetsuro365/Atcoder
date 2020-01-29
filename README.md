@@ -1026,6 +1026,18 @@ int main(){
     cout << ok << endl;
 ```
 
+**実数**
+
+```cpp
+    double ok = 0, ng = 1145141919;
+    for(int i = 0; i < 5000; i++){
+        double p = (ok + ng) * 0.5;
+        //cout << p << endl;
+        if(check(p))ok = p;
+        else ng = p;
+    }
+```    
+
 # 逆元
 **ある数aにある数xをかけると1になる．この時，ある数xを「逆元」と言う．割り算を掛け算で表すために逆元を使う．つまり，割れる数数×割る数の逆元．**
 
