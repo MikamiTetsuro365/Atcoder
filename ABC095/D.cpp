@@ -9,7 +9,6 @@ vector<vector<ll > > vec2;
 ll MOD = 1000000007;
 ll INF = 1145141919454519;
 
-
 int main() {
 
     ll N, C; cin >> N >> C;
