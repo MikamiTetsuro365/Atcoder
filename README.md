@@ -496,12 +496,16 @@ int main() {
 }
 ```
 
-# 気持ちの良いDP
+# DP(思い出したときに書き足し)
 **VectorでDPテーブルを作ってしまうと膨大なメモリ空間にアクセスする必要があるのでTLE必須→Mapで頑張った[ARC073_B](https://atcoder.jp/contests/abc060/tasks/arc073_b)**
+
 **要素が2つあった[ABC054_D](https://atcoder.jp/contests/abc054/submissions/7929944)**
+
+**挿入DP[CPSCO2019_Session3_F](https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f)**
 
 # next_permutation
 **順列を生成する便利な奴[アルゴリズム](https://scrapbox.io/ganariya/%E8%BE%9E%E6%9B%B8%E5%BC%8F%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)**
+
 **この考え方が役に立った問題[AGC022_A](https://atcoder.jp/contests/agc022/tasks/agc022_a)**
 ```cpp
 ll N;
