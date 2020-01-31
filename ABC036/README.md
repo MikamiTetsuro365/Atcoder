@@ -7,3 +7,6 @@
     - f(x) :　注目している頂点xの色はなんでもよく，その部分木を白または黒で塗ることを考え，両端が黒でないような塗り方
     - g(x) : f(x)と同様だが，頂点xは白で必ず塗る必要がある
     - 頂点をある色で塗った時，その子の頂点は何色で塗れて通りの数はいくつか？を伝播させて確かめて，最終的にかけ合わせたものが答え
+
+- イメージ
+<img src="http://drive.google.com/uc?export=view&id=1x3mYqTpFrR9ZPTIdlSRgj9Bg5uSGcgj5" title="ABC036_D" width = "480">

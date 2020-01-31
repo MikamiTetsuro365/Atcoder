@@ -44,7 +44,7 @@ ll dfs(ll idx, ll color, ll from = -1){
         dp[idx][color] %= MOD;
 
     }
-    //cout << dp[idx][color] << endl;
+    //cout << idx << " " << from << " " << dp[idx][color] << endl;
     return dp[idx][color];
 }
 
