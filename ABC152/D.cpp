@@ -14,14 +14,25 @@ int main() {
     ll N;
     cin >> N;
 
-    ll ans = 0;
-
-    ll dp[10][10];
-    memset(dp, 0, sizeof(dp));
+    map<vector<char >, ll> mp;
 
     for(ll i = 1; i <= N; i++){
-        if(i < 10)
-        string s = to_string(i);
+        string num = to_string(i);
+        if(num.length() == 1) mp[vector<char >{num[0],num[0]}]++;
+        else mp[vector<char >{num[0],num[num.length()-1]}]++;
     }
+
+    ll ans = 0;
+
+    auto begin = mp.begin(), end = mp.end();
+    for (auto iter = begin; iter != end; iter++) {
+        char a = iter->first[0];
+        char b = iter->first[1];
+        ll num = iter-> second;
+        ans += num * mp[vector<char >{b, a}];
+        //cout << a << " " << b << " " << num << endl;
+    }    
+
+    cout << ans << endl;
 
 }

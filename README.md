@@ -172,8 +172,11 @@ int main(){
 using namespace std;
 typedef long long int ll;
 typedef pair<ll, ll > pi;  
+vector<vector<pi > > G;
+vector<bool > seen;
+ll N, M;
 
-void dfs(vector<vector<pi > > G, vector<bool > seen, ll idx, ll from = -1){
+void dfs(ll idx, ll from = -1){
     seen[idx] = true;
 
     for(ll i = 0; i < G[idx].size(); i++){
@@ -184,17 +187,16 @@ void dfs(vector<vector<pi > > G, vector<bool > seen, ll idx, ll from = -1){
             continue;
         }
  
-        dfs(G, seen ,to , idx);
+        dfs(to , idx);
     }
 }
 
 int main(){
-    ll N, M;
+    
     cin >> N >> M;
     //初期化
-    vector<vector<pi > > G;
     G.assign(N, vector<pi >());
-    vector<bool > seen(N, false);
+    seen.assign(N, false);
  
     //グラフ入力
     for(ll i = 0; i < M; i++){
@@ -208,7 +210,7 @@ int main(){
         G[v].push_back(make_pair(u, w));
     }
 
-    dfs(G ,seen ,0);
+    dfs(0);
 }
 ```
 
