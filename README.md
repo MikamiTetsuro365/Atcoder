@@ -57,6 +57,12 @@ if(ceil(ans) != floor(ans)){
 }
 ```
 
+# 8近傍(2個飛ばしで4近傍)
+```cpp
+ll dy[8] = {1, 1, 1, 0, -1, -1, -1, 0};
+ll dx[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
+```
+
 # Priority queue(優先度付きQueue)
 ```cpp
 priority_queue<ll > que;
