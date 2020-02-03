@@ -142,6 +142,23 @@ vector<ll > divisor(ll n) {
 }
 ```
 
+# 直線交差判定
+**役に立つときがくるかは...**
+```cpp
+bool check(ll x1, ll x2, ll y1, ll y2, ll tx1, ll tx2, ll ty1, ll ty2){
+    ll ta = (x1-x2)*(ty1-y1)+(y1-y2)*(x1-tx1);
+    ll tb = (x1-x2)*(ty2-y1)+(y1-y2)*(x1-tx2);
+
+    if(ta * tb < 0){
+        //交差してる
+        return true;
+    }else{
+        //交差してない
+        return false;
+    }
+}
+```
+
 
 # 木やグラフ
 **辺に重みも設定できます**
