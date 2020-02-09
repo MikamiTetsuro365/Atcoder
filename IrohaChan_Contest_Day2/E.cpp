@@ -104,41 +104,36 @@ int main() {
     cin >> N >> M;
 
     //準備
-    combination(100000);
+    combination(N + M);
 
+    /*
     if(N < 3){
         cout << 0 << endl;
         return 0;
     }
+    */
 
     //先頭がA，末尾がBのような組み合わせ
     ll ans = nCk(N+M-2, N-1);
-    cout << ans << endl;
+    //cout << ans << endl;
 
     //AAAを含まない組み合わせ
     //AAやAで成り立つような文字列
     //AAは最大N/2+1個作れる
-    for(ll i = 0; i < N / 2 + 1; i++){
-        //AAをi個作った時，AAと残りのAの並べ方
-        ll aa = i;
+    ll _ans = 0;
+    for(ll aa = 0; aa < N/2+1; aa++){
+        
         ll a = N - aa * 2;
-        ll cmb = nCk(a + aa, aa);
-        //Bが置ける場所
-        ll b_space = a + aa;
-        //使えるB
-        ll b_rest = M - (a + aa);
+        if(a < 0) continue;
+        ll b = M - (aa + a);
+        if(b < 0) continue;
 
-        if(b_rest < 0) continue;
-
-        //AとBの置き方は独立して考えられる
-        //Bをどう配置するか->重複組み合わせ；
-        cmb *=  nHk(b_space, b_rest);
-        cmb %= MOD;
-        cout << cmb << endl;
-        ans -= cmb;
+        //Aは絶対に１つは置く必要がある．AAの内，残りのAの並べ方
+        _ans += nCk(a + aa, aa) * nHk(a+aa, b) % MOD;
+        _ans %= MOD;
     }
 
-
-    cout << ans << endl;
+    //たまに負のあまりが出るのでMOD足してもう一度MODで割る
+    cout << (ans - _ans + MOD) % MOD  << endl;
 
 }
