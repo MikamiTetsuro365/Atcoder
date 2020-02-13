@@ -528,9 +528,11 @@ int main() {
 
 **挿入DP[CPSCO2019_Session3_F](https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f)**
 
-**（要復習）木DP[ABC036_D](https://atcoder.jp/contests/abc036/submissions/9845462)**
+**要復習:木DP[ABC036_D](https://atcoder.jp/contests/abc036/submissions/9845462)**
 
 **取捨選択[forでやる(好み)](https://atcoder.jp/contests/iroha2019-day1/submissions/9885896)[メモ化再帰]()**
+
+**要復習：桁DP(使える数字使えない数字があって数を数える)[ABC007_D](https://atcoder.jp/contests/abc007/submissions/9521364)**
 
 
 
