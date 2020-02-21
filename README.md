@@ -57,6 +57,10 @@ if(ceil(ans) != floor(ans)){
 }
 ```
 
+# 複数(3つ以上)の変数を減らして考える
+**式変形の発想が重要 [AGC024](https://atcoder.jp/contests/agc024/submissions/10248341) [ABC006](https://atcoder.jp/contests/abc006/submissions/10112465)**
+
+
 # 8近傍(2個飛ばしで4近傍)
 ```cpp
 ll dy[8] = {1, 1, 1, 0, -1, -1, -1, 0};
