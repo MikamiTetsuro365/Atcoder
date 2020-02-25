@@ -1248,6 +1248,10 @@ int main(){
 
 **[参考1(youtube)](https://www.youtube.com/playlist?list=PLd3yb0oVJ_W1wWsVpcQvuHwEea1SeVO_s) [参考2](https://www.risuuhakusyo.com/chouhuku-kumiawase)**
 
+# Grundy数
+**良さげなプログラム執筆中**
+
+**[HackerRank:Game_Theory_Day_1:Game_of_Stones](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges/a-game-of-stones/submissions/code/1321196266)**
 
 # あばばば
 **概要**
