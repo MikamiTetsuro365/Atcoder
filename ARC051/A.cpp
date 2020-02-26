@@ -19,9 +19,6 @@ int main(){
     double x2, y2, x3, y3;
     cin >> x2 >> y2 >> x3 >> y3;
 
-    ll flgR = false;
-    ll flgB = false;
-
     double r1 = sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
     double r2 = sqrt(pow(x3-x1, 2) + pow(y3-y1, 2));
     double r3 = sqrt(pow(x2-x1, 2) + pow(y3-y1, 2));
