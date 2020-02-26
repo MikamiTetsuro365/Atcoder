@@ -8,20 +8,16 @@ vector<ll > vec;
 vector<vector<ll > > vec2;
 ll MOD = 1000000007;
 ll INF = 1145141919454519;
-
+//問題読み間違えた．．．
 int main(){
 
-    ll X, A, B;
-    cin >> X >> A >> B;
-
-    if(B - A <= X){
-        if(A - B >= 0){
-            cout << "delicious" << endl;
-        }else{
-            cout << "safe" << endl;
-        }
+    ll N, K;
+    cin >> N >> K;
+    //奇数同士を選ぶと最大の選び方ができる
+    if(N / 2 + N % 2 >= K){
+        cout << "YES" << endl;
     }else{
-        cout << "dangerous" << endl;  
+        cout << "NO" << endl;
     }
 
 }

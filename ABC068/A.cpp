@@ -11,17 +11,9 @@ ll INF = 1145141919454519;
 
 int main(){
 
-    ll X, A, B;
-    cin >> X >> A >> B;
+    ll N;
+    cin >> N;
 
-    if(B - A <= X){
-        if(A - B >= 0){
-            cout << "delicious" << endl;
-        }else{
-            cout << "safe" << endl;
-        }
-    }else{
-        cout << "dangerous" << endl;  
-    }
+    cout << "ABC" << N << endl;
 
 }

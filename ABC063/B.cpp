@@ -11,17 +11,19 @@ ll INF = 1145141919454519;
 
 int main(){
 
-    ll X, A, B;
-    cin >> X >> A >> B;
+    string S;
+    cin >> S;
 
-    if(B - A <= X){
-        if(A - B >= 0){
-            cout << "delicious" << endl;
-        }else{
-            cout << "safe" << endl;
-        }
+    map<char, ll > mp;
+
+    for(ll i = 0; i < S.length(); i++){
+        mp[S[i]]++;
+    }
+
+    if(mp.size() == S.length()){
+        cout << "yes" << endl;
     }else{
-        cout << "dangerous" << endl;  
+        cout << "no" << endl;
     }
 
 }
