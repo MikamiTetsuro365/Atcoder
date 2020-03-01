@@ -1260,6 +1260,7 @@ int main(){
 ## ある値から見てその値がある条件の元で何回数えられるかを考える
 - [B - Minimum Sum](https://atcoder.jp/contests/agc005/submissions/9555031)
 - [E - Second Sum](https://atcoder.jp/contests/abc140/submissions/10419223)
+- [C - 徒歩圏内](https://atcoder.jp/contests/bitflyer2018-qual/tasks/bitflyer2018_qual_c)
 
 # あばばば
 **概要**
