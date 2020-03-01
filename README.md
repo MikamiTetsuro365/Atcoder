@@ -1253,6 +1253,11 @@ int main(){
 **[HackerRank:Game_Theory_Day_1:Game_of_Stones](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges/a-game-of-stones/submissions/code/1321196266)**
 **[HackerRank:Game_Theory_Day_1:A_Chessboard_Game](https://www.hackerrank.com/challenges/a-chessboard-game-1/submissions/code/144630003)**
 
+# まとめて数え上げる
+## ある値から見てその値がある条件の元で何回数えられるかを考える
+- [B - Minimum Sum](https://atcoder.jp/contests/agc005/submissions/9555031)
+- [E - Second Sum](https://atcoder.jp/contests/abc140/submissions/10419223)
+
 # あばばば
 **概要**
 ```cpp
