@@ -1249,9 +1249,12 @@ int main(){
 **[参考1(youtube)](https://www.youtube.com/playlist?list=PLd3yb0oVJ_W1wWsVpcQvuHwEea1SeVO_s) [参考2](https://www.risuuhakusyo.com/chouhuku-kumiawase)**
 
 # 公平ゲーム
-## Grundy数
-**[HackerRank:Game_Theory_Day_1:Game_of_Stones](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges/a-game-of-stones/submissions/code/1321196266)**
-**[HackerRank:Game_Theory_Day_1:A_Chessboard_Game](https://www.hackerrank.com/challenges/a-chessboard-game-1/submissions/code/144630003)**
+- 偶数と奇数で勝敗が別れる
+- 操作を真似ると有利ポジションにつける
+- Nimへの帰着(二進数表記における各桁のMOD)
+## Grundy数(必ず勝つルートに入れば勝つ，逆も然り)
+- [HackerRank:Game_Theory_Day_1:Game_of_Stones](https://www.hackerrank.com/contests/5-days-of-game-theory/challenges/a-game-of-stones/submissions/code/1321196266)**
+- [HackerRank:Game_Theory_Day_1:A_Chessboard_Game](https://www.hackerrank.com/challenges/a-chessboard-game-1/submissions/code/144630003)**
 
 # まとめて数え上げる
 ## ある値から見てその値がある条件の元で何回数えられるかを考える
