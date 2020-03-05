@@ -9,140 +9,76 @@ vector<vector<ll > > vec2;
 ll MOD = 1000000007;
 ll INF = 1145141919454519;
 
-vector<vector<ll > > tG;
+vector<vector<ll > > ans;
+map<ll, ll> mp;
+bool f = false;
 
-bool check(ll i, ll j){
+void dfs(vector<ll > g, ll r = -1, ll d = -1){
+    
+    //判定
+    if(d != -1) g.push_back(r);
+    //列挙終了->条件を満たすか確認
+    if(d == 7){
+        vector<vector<ll > > G(8, vector<ll >(8, 0));
+        for(ll i = 0; i < 8; i++){
+            ll j = g[i];
+            //縦横ナナメ45度にクイーンがいないか確認
+            for(ll k = 0; k < 8; k++){
+                //縦横
+                if(G[i][k] == 1 || G[k][j] == 1) return;
+                // \みたいな斜め
+                if(i-k >= 0 && j+k < 8) if(G[i-k][j+k] == 1) return; 
+                if(i+k < 8 && j-k >= 0) if(G[i+k][j-k] == 1) return;
+                // /みたいな斜め
+                if(i+k < 8  && j+k < 8)  if(G[i+k][j+k] == 1) return; 
+                if(i-k >= 0 && j-k >= 0) if(G[i-k][j-k] == 1) return;
+            }
 
-    bool f = true;
-    //縦横
-    for(ll k = 0; k < 8; k++){
-        if(tG[i][k] == 2 || tG[k][j] == 2){
-            f = false;
+            G[i][j] = 1;
         }
-        tG[i][k] = 1;
-        tG[k][j] = 1;
+
+        f = true;
+        ans = G;
+        return;
     }
-    // \みたいな斜め
-    ll cn = 0;
-    for(ll k = max(0LL, i-j); k < i + min(8-i, 8-j); k++){
-        //cout << k << " " << j-min(i, j)+cn << endl;
-        if(tG[k][j-min(i, j)+cn] == 2){
-            f = false;
+    //すでに置かれている3つか？
+    auto it = mp.find(d + 1);
+    if(it != mp.end()){
+        //cout << it->second << endl;
+        dfs(g, it->second, d + 1);
+    }else{
+        for(ll i = 0; i < 8; i++){
+            dfs(g, i, d + 1);
         }
-        tG[k][j-min(i, j)+cn] = 1;
-        cn++;
     }
-    // /みたいな斜め
-    cn = 0;
-    for(ll k = max(0LL, i-8-j); k < i + min(i, j); k++){
-        if(tG[k][j+min(i, 8-j)+cn] == 2){
-            f = false;
-        }
-        tG[k][j+min(i, 8-j)+cn] = 1;
-        cn--;
-    }
-    tG[i][j] = 2;
-    return f;
+
+    return;
 }
 
 int main(){
 
-    vector<vector<ll > > G(8, vector<ll >(8, 0));
-
-    bool f = true;
     for(ll i = 0; i < 8; i++){
         for(ll j = 0; j < 8; j++){
             char c; cin >> c;
-            if(c == 'Q'){
-                //縦横
-                for(ll k = 0; k < 8; k++){
-                    if(G[i][k] == 2 || G[k][j] == 2){
-                        f = false;
-                    }
-                    G[i][k] = 1;
-                    G[k][j] = 1;
-                }
-                // \みたいな斜め
-                ll cn = 0;
-                for(ll k = max(0LL, i-j); k < i + min(8-i, 8-j); k++){
-                    //cout << k << " " << j-min(i, j)+cn << endl;
-                    if(G[k][j-min(i, j)+cn] == 2){
-                        f = false;
-                    }
-                    G[k][j-min(i, j)+cn] = 1;
-                    cn++;
-                }
-                // /みたいな斜め
-                cn = 0;
-                for(ll k = max(0LL, i-8-j); k < i + min(i, j); k++){
-                    if(G[k][j+min(i, 8-j)+cn] == 2){
-                        f = false;
-                    }
-                    G[k][j+min(i, 8-j)+cn] = 1;
-                    cn--;
-                }
-                G[i][j] = 2;
-            }
-
+            if(c == 'Q') mp[i] = j;
         }
     }
+
+    vector<ll > g;
+    dfs(g);
 
     if(f == false){
         cout << "No Answer" << endl;
-        return 0;
-    }
-
-    //答えの候補を決めて
-    vector<vector<pi > > kouho;
-    for(ll i = 0; i < 8; i++){
-        vector<pi > t;
-        for(ll j = 0; j < 8; j++){
-            if(G[i][j] == 0){
-                t.push_back(make_pair(i, j));
-            }
-        }
-        if(t.size() > 0){
-            kouho.push_back(t);
-        }
-    }
-    for(ll i = 0; i < 8; i++){
-        for(ll j = 0; j < 8; j++){
-            cout << G[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    //全探査
-    for(ll i = 0; i < kouho[0].size(); i++){
-        cout << kouho.size() << endl;
-        //cout << kouho[0].size() << kouho[1].size() << kouho[2].size() << kouho[3].size() << endl;
-        for(ll j = 0; j < kouho[1].size(); j++){
-            for(ll k = 0; k < kouho[2].size(); k++){
-                for(ll n = 0; n < kouho[3].size(); n++){
-                    for(ll m = 0; m < kouho[4].size(); m++){
-                        tG = G;
-                        cout << i << j << k << n << m << endl;
-                        if(tG[kouho[0][i].first][kouho[0][i].second] > 0) continue;
-                        bool f1 = check(kouho[0][i].first, kouho[0][i].second);
-                        if(tG[kouho[1][j].first][kouho[1][j].second] > 0) continue;
-                        bool f2 = check(kouho[1][j].first, kouho[1][j].second);
-                        if(tG[kouho[2][k].first][kouho[2][k].second] > 0) continue;
-                        bool f3 = check(kouho[2][k].first, kouho[2][k].second);
-                        if(tG[kouho[3][n].first][kouho[3][n].second] > 0) continue;
-                        bool f4 = check(kouho[3][n].first, kouho[3][n].second);
-                        if(tG[kouho[4][m].first][kouho[4][m].second] > 0) continue;
-                        bool f5 = check(kouho[4][m].first, kouho[4][m].second);
-                        // if((f1 & f2 & f3 & f4 & f5) == true){
-                        //     cout << "yea!" << endl;
-                        //     return 0;
-                        // }
-                    }
-                }
-            }
+    }else{
+        //cout << "Yes Answer" << endl;
+        for(ll i = 0; i < 8; i++){
+            for(ll j = 0; j < 8; j++){
+                if(ans[i][j] == 0) cout << ".";
+                else cout << "Q";
+            }            
+            cout << endl;
         }
     }
 
-    cout << "No Answer" << endl;
-    return 0;
 
 }
