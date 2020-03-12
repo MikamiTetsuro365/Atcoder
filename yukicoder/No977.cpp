@@ -27,7 +27,7 @@ struct UnionFind{
             size[i] = 1;
         }
     }
- 
+    
     //どの根っこに属しているのか？さかのぼり続ける
     int root(int x){
         if(tree[x] == x){
