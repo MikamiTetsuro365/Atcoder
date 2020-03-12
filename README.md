@@ -163,20 +163,6 @@ bool check(ll x1, ll x2, ll y1, ll y2, ll tx1, ll tx2, ll ty1, ll ty2){
 }
 ```
 
-# 最長増加部分列問題
-```cpp
-    //最長増加部分列
-    ll mx = 0;
-    vector<ll > dp(N, INF);
-    for(ll i = 0; i < N; i++){
-        //注目している数字以上になる最初の最小の箇所を見つける
-        //その方がのちのちに最長なりやすい
-        ll it = lower_bound(dp.begin(), dp.end(), vec[i]) - dp.begin();
-        dp[it] = vec[i];
-        mx = max(mx, it);
-    }
-```
-
 # 木やグラフ
 **辺に重みも設定できます**
 ```cpp
@@ -1261,6 +1247,29 @@ int main(){
 - [B - Minimum Sum](https://atcoder.jp/contests/agc005/submissions/9555031)
 - [E - Second Sum](https://atcoder.jp/contests/abc140/submissions/10419223)
 - [C - 徒歩圏内](https://atcoder.jp/contests/bitflyer2018-qual/tasks/bitflyer2018_qual_c)
+
+
+
+# 最長増加部分列問題
+- [E-Sequence Decomposing](https://atcoder.jp/contests/abc134/submissions/10115014)
+- [No.979 Longest Divisor Sequence](https://yukicoder.me/submissions/442222)
+- [D-トランプ挿入ソート](https://abc006.contest.atcoder.jp/submissions/10112749)
+- [C-積み重ね](https://atcoder.jp/contests/arc006/submissions/10737459)
+    - 制約が緩いのでどうとでも解ける
+
+```cpp
+    //最長増加部分列
+    ll mx = 0;
+    vector<ll > dp(N, INF);
+    for(ll i = 0; i < N; i++){
+        //注目している数字以上になる最初の最小の箇所を見つける
+        //その方がのちのちに最長なりやすい
+        ll it = lower_bound(dp.begin(), dp.end(), vec[i]) - dp.begin();
+        dp[it] = vec[i];
+        mx = max(mx, it);
+    }
+```
+
 
 # あばばば
 **概要**
