@@ -1256,6 +1256,7 @@ int main(){
 - [D-トランプ挿入ソート](https://abc006.contest.atcoder.jp/submissions/10112749)
 - [C-積み重ね](https://atcoder.jp/contests/arc006/submissions/10737459)
     - 制約が緩いのでどうとでも解ける
+- [B-Backfront](https://agc024.contest.atcoder.jp/submissions/10247741)
 
 ```cpp
     //最長増加部分列
