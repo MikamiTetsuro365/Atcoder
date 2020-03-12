@@ -29,6 +29,7 @@ int main() {
         ll t; cin >> t;
         vec.push_back(t);
     }
+<<<<<<< HEAD
 
     //繋がっていけるのは約数の中身のみ
     //約数ごとに長さを管理して，より長く繋げていけそうな奴を更新する
@@ -55,5 +56,25 @@ int main() {
         
     //     mx = max(mx, it);
     // }
+=======
+    //最長増加部分列的な
+    ll mx = 0;
+    vector<ll > dp(N+19, 1);
+    //約数毎にどれだけ伸ばせるか？
+    vector<ll > len(19191919, 0);
+    for(ll i = 0; i < N; i++){
+        vector<ll > div = divisor(vec[i]);
+        for(ll j = 0; j < div.size()-1; j++){
+            //自分の約数方向に伸ばせる
+            dp[i] = max(len[div[j]]+1, dp[i]);
+            //cout << vec[i] << "::" << len[div[j]]+1 << endl;
+        }
+        len[vec[i]] = max(dp[i], len[vec[i]]);
+        //cout << dp[i] << endl;
+        mx = max(dp[i], mx);
+    }
+
+    cout << mx << endl;
+>>>>>>> d853bd95fdc80a6cac65747414f2bc4fed970d53
 
 }
