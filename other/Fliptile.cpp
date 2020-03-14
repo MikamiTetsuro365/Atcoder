@@ -27,6 +27,7 @@ ll solv(vector<vector<ll > > in){
         }
 
         ll flip_num = 0;
+        //踏み方を仮想的に決める↓
         //最後の行の手前まで
         for(ll row = 0; row < N - 1; row++){
             for(ll col = 0; col < M; col++){
