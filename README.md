@@ -303,6 +303,71 @@ int main(){
 }
 ```
 
+## 迷路とか（タイピング速度爆速ではないので一々書くのめんどくさいよ．．．）
+
+```cpp
+#include "bits/stdc++.h"
+ 
+using namespace std;
+typedef long long int ll;
+typedef pair<ll, ll > pi;  
+typedef pair<pair<ll, ll >, ll > pii;  
+vector<ll > vec;
+vector<vector<ll > > vec2;
+ll MOD = 1000000007;
+ll INF = 1145141919454519;
+ll G[1919][1919];
+ll H, W;
+ll dx[4] = {1, 0, -1 ,0};
+ll dy[4] = {0, 1, 0 ,-1};
+
+ll bfs(ll y, ll x, ll id){
+    //準備
+    //vector<vector<ll > > dist(N, vector<ll >(M, -1));
+    queue<pi> que;
+    //初期化
+    //dist[x][y] = 0;
+    que.push(make_pair(y, x));
+    G[y][x] = id;
+    
+    ll size = 0;
+
+    while(!que.empty()){
+        ll from_y = que.front().first;
+        ll from_x = que.front().second;
+        que.pop();
+        size++;
+
+        for(ll i = 0; i < 4; i++){
+            if(from_y + dy[i] >= 0 && from_y + dy[i] <= H+19 && from_x + dx[i] >= 0 && from_x + dx[i] <= W+19){
+                ll to_y = from_y + dy[i];
+                ll to_x = from_x + dx[i];
+                //連結された島がある時
+                if(G[to_y][to_x] == 1){
+                    G[to_y][to_x] = id;
+                    que.push(make_pair(to_y, to_x));
+                }
+            }
+        }
+    }
+    return size;
+}
+
+int main() {
+
+    cin >> H >> W;
+
+    for(ll i = 0; i < H; i++){
+        string S;
+        cin >> S;
+        for(ll j = 0; j < W; j++){
+            if(S[j] == '#') G[i+19][j+19] = 1;
+            else G[i+19][j+19] = 0;
+        }
+    }
+}
+```
+
 # 橋
 **とてもわかり易い説明.特に6段目がよさみあふれる[ここ1](http://kagamiz.hatenablog.com/entry/2013/10/05/005213) [ここ２](https://ei1333.github.io/luzhiled/snippets/graph/lowlink.html) [ここ3](https://www.slideshare.net/chokudai/arc045)**
 
